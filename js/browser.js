@@ -1,11 +1,15 @@
 const btn = document.getElementById("btn")
 const ul = document.getElementById("ul")
-const drawList = (items)=>{items.forEach(item=>ul.innerHTML=`
-<li>${item.msg}</li>`)}
+const drawList = (items)=>{
+  items.forEach(item=>ul.innerHTML+=`
+  <li>${item.msg}</li>`)
+}
 
 btn.addEventListener("click", ()=>{
-    fetch("https://localhost:3000/todos")
+  ul.innerHTML="Wait..."
+    fetch("http://localhost:3000/todos")
         .then(res=>res.json())
-        .then(d=>drawList(d))
-        .catch(e=>console.log(e))
+        .then(d => {ul.innerHTML=""
+        drawList(d)} )
+        .catch(e => ul.innerHTML="can't get the data")
 })
