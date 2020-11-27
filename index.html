@@ -1,29 +1,37 @@
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="index.css" rel="stylesheet"/>
-</head>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="index.css" rel="stylesheet"/>
+  </head>
 
-<body>
-<section id="navbar">
-<ul>
-  <li><a href="#">Home</a></li>
-  <li><a href="about.html">About</a></li>
-</ul>
-</section>
+  <body>
+    <section id="navbar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </section>
 
-<section title="get" id="active">
-    <input type="text" placeholder="type to get or post a message"/>
-    <button id="btn">Get</button>
-    <button id="post">Post</button>
-</section>
+    <section title="get" id="active">
+      <input type="text" id="inputGet" placeholder="input text as a filter"/>
+      <button id="btn">Get</button>
+      <select id="select">
+        <option value="all">all</option>
+        <option value="sample">sample 5</option>
+      </select>
+    </section>
 
-<section id="messages">
-    <ul id="ul">
+    <!-- <section title="get" id="active-post">
+      <input type="text" placeholder="type to get or post a message"/>
+      <button id="post">Post</button>
+    </section> -->
 
-    </ul>
-</section>
-<script src="./browser.js"></script>
-</body>
+    <section id="messages">
+      <ul id="ul">
+
+      </ul>
+    </section>
+    <script src="./browser.js"></script>
+  </body>
 </html>

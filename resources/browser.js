@@ -1,13 +1,22 @@
 const btn = document.getElementById("btn")
 const ul = document.getElementById("ul")
+const select = document.querySelector("select")
+const inputGet = document.getElementById("inputGet")
 const drawList = (items)=>{
-  items.forEach(item=>ul.innerHTML+=`
-  <li>${item.msg}</li>`)
+   items.length !== 0 ? (items.forEach(item=>ul.innerHTML+=`
+  <li>${item.quote}</li>`)) : ( ul.innerHTML=`
+ <li>no matches</li>` )
 }
+let key, uri, selected
 
+console.log(uri)
 btn.addEventListener("click", ()=>{
+  selected = select.value
+  key = inputGet.value == "" ? "asdfgh": inputGet.value
+  uri = `http://localhost:3000/quote/${key}/${selected}`
+  console.log(uri)
   ul.innerHTML="Wait..."
-    fetch("http://localhost:3000/todos")
+    fetch(uri)
         .then(res=>res.json())
         .then(d => {ul.innerHTML=""
         drawList(d)} )
