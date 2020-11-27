@@ -1,14 +1,29 @@
 <html lang="en">
 <head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="index.css" rel="stylesheet"/>
 </head>
 
 <body>
-<section title="get">
-  <button id="btn">Get Data</button>
-<ul id="ul">
-    
+<section id="navbar">
+<ul>
+  <li><a href="#">Home</a></li>
+  <li><a href="about.html">About</a></li>
 </ul>
 </section>
-<script src="browser.js"></script>
+
+<section title="get" id="active">
+    <input type="text" placeholder="type to get or post a message"/>
+    <button id="btn">Get</button>
+    <button id="post">Post</button>
+</section>
+
+<section id="messages">
+    <ul id="ul">
+
+    </ul>
+</section>
+<script src="./browser.js"></script>
 </body>
 </html>

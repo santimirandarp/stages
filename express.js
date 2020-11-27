@@ -4,6 +4,7 @@ const app = express()
 const path = require("path")
 const cors = require('cors')
 
+app.use(express.static(path.join(__dirname + "/resources")))
 //path from the root/server where the node
 //process node exp.js is started.
 
@@ -34,5 +35,5 @@ app.get("/todos", (req, res) => {
     const items = mongoGetAllItems().then(d => res.json(d)).catch(e => console.log(e))
 })
 
-app.use(express.static(path.join(__dirname + "/js")))
+
 app.listen(port, () => console.log(`listening at ${port}`))
