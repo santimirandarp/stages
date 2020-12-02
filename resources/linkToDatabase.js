@@ -1,6 +1,6 @@
 //db call
 const dotenv = require("dotenv")
-dotenv.config({path: "./resources/.env"})
+dotenv.config()
 const { MongoClient } = require("mongodb")
 //
 const { DBUSER, PASS, CLUSTER_ID } = process.env

@@ -9,12 +9,10 @@ const drawList = (items)=>{
 }
 let key, uri, selected
 
-console.log(uri)
 btn.addEventListener("click", ()=>{
   selected = select.value
   key = inputGet.value == "" ? "asdfgh": inputGet.value
   uri = `http://localhost:3000/quote/${key}/${selected}`
-  console.log(uri)
   ul.innerHTML="Wait..."
     fetch(uri)
         .then(res=>res.json())

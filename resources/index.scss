@@ -1,0 +1,85 @@
+@mixin center(){
+display:grid;
+place-items:center;
+}
+@mixin bodyGrid(){
+  grid-template-rows:minmax(80px,0.1fr) minmax(200px,0.3fr) minmax(400px, 0.6fr);
+  grid-template-columns: 0.33fr 0.66fr;
+  grid-template-areas:
+  ". . ."
+  "nav search search"
+  "quotes quotes quotes";
+  align-items:center;
+}
+@mixin flexCenter($dir){
+display:flex;
+flex-direction:$dir;
+align-items:center;
+justify-content:center;
+}
+
+$link-color:rgba(114, 114, 189, 0.9);
+$color:white;
+$bg:#121212;
+
+//general defs
+* {padding:0; margin:0; box-sizing:border-box}
+html{font-size:18px}
+ul{list-style-type:none;}
+ul>li{ padding:1.2rem }
+a {
+font-variant:small-caps;
+font-weight:500;
+text-decoration:none;
+color:$link-color;
+}
+body{
+  padding:1rem;
+  display:grid;
+  @include bodyGrid;
+  font-family:"sans-serif";
+  font-size:18px;
+  height:100vh;
+  overflow:hidden;
+  color:$color;
+  background-color:$bg;
+}
+//by elements in html/components
+#navbar{
+  grid-area:nav;
+  background-color: #461e1ea6;
+  text-align:center;
+  & > ul{
+  display:flex;
+  flex-direction:column
+}}
+#active{
+  @include flexCenter(row);
+  grid-area:search;
+  & > *{
+  @include center;
+  border:none;
+  border-radius:0;
+  height:2.5rem;
+  padding:0 1rem;
+}
+ & > button{ border-left:1px solid #121212;
+  &:hover{
+  cursor:pointer;
+  background-color:lightblue
+  }
+ }
+}
+#messages{
+  grid-area:quotes;
+  max-height:300px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding-bottom:1rem;
+}
+#ul > li{
+text-align:center;
+padding:0.9rem;
+&:nth-child(odd){ background-color:#a2a2a2 }
+&:nth-child(even){ background-color:#454545 }
+}
