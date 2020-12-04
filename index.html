@@ -1,40 +1,47 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="index.css" rel="stylesheet"/>
   </head>
 
   <body>
-    <section id="navbar">
+
+    <nav id="navbar">
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
-    </section>
+    </nav>
 
-    <section title="get" class="active" id="active">
-      <div class="active__receive"/>
-      <input type="text" id="inputGet" placeholder="input text as a filter"/>
-      <button id="btn">Get</button>
-      <select id="select">
-        <option value="all">all</option>
-        <option value="sample">sample 5</option>
-      </select>
+    <section title="get" class="requests" id="requests">
+      <h2>Quotes Library!</h2>
+      <p>Get your favorite quotes!</p>
+      <div aria-label="input text section follows" class="requests__get"/>
+        <input type="text" placeholder="input text as a filter"/>
+        <button>Get</button>
+        <select id="select">
+          <option value="all">all</option>
+          <option value="sample">sample 5</option>
+        </select>
       </div>
-
-      <form class="active__send" action="./todos">
-      <input type="text" 
-      name="quote"
-      placeholder="Insert new quote..."/>
-      <button type="submit"/>Post</button>
+      <p>You can also send to the library. Please, try to avoid special characters <code>( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
+      <form class="requests__post">
+        <input type="text" name="quote" required
+               placeholder="Insert new quote..."/><br/>
+        <input type="text" name="author" required
+               placeholder="Insert author..."/>
+        <button type="submit"/>Post</button>
       </form>
+
     </section>
 
     <section id="quotes" class="quotes">
-      <ul id="ul" class="quotes__ul">
-      </ul>
+      <ul class="quotes__ul"></ul>
     </section>
+
     <script src="./browser.js"></script>
   </body>
 </html>
