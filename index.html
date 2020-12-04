@@ -13,22 +13,26 @@
       </ul>
     </section>
 
-    <section title="get" id="active">
+    <section title="get" class="active" id="active">
+      <div class="active__receive"/>
       <input type="text" id="inputGet" placeholder="input text as a filter"/>
       <button id="btn">Get</button>
       <select id="select">
         <option value="all">all</option>
         <option value="sample">sample 5</option>
       </select>
+      </div>
+
+      <form class="active__send" action="./todos">
+      <input type="text" 
+      name="quote"
+      placeholder="Insert new quote..."/>
+      <button type="submit"/>Post</button>
+      </form>
     </section>
 
-    <!-- <section title="get" id="active-post">
-      <input type="text" placeholder="type to get or post a message"/>
-      <button id="post">Post</button>
-    </section> -->
-
-    <section id="messages">
-      <ul id="ul">
+    <section id="quotes" class="quotes">
+      <ul id="ul" class="quotes__ul">
       </ul>
     </section>
     <script src="./browser.js"></script>
