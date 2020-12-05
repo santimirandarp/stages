@@ -16,6 +16,12 @@
       </ul>
     </nav>
 
+    <section id="info">
+      <h2>Miscellaneous</h2>
+      <p>
+      Please, try to avoid special characters <code>( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
+    </section>
+
     <section title="get" class="requests" id="requests">
       <h2>Quotes Library!</h2>
       <p>Get your favorite quotes!</p>
@@ -27,7 +33,11 @@
           <option value="sample">sample 5</option>
         </select>
       </div>
-      <p>You can also send to the library. Please, try to avoid special characters <code>( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
+
+      <div class="requests__dropdown">
+        <p>Now Try<br/>Posting!</p>
+        <div>&darr;</div>
+      </div>
       <form class="requests__post">
         <input type="text" name="quote" required
                placeholder="Insert new quote..."/><br/>
@@ -38,9 +48,9 @@
 
     </section>
 
-    <section id="quotes" class="quotes">
+    <div id="quotes" class="quotes">
       <ul class="quotes__ul"></ul>
-    </section>
+    </div>
 
     <script src="./browser.js"></script>
   </body>
