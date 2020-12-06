@@ -1,10 +1,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
- <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="index.css" rel="stylesheet"/>
+    <link href="./css/index.css" rel="stylesheet"/>
   </head>
 
   <body>
@@ -17,16 +17,16 @@
     </nav>
 
     <section id="info">
-      <h2>Miscellaneous</h2>
+      <h2 class="fancyGradient">Miscellaneous</h2>
       <p>
-      Please, try to avoid special characters <code>( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
+      Please, try to avoid special characters <code class="inlineCode">( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
     </section>
 
     <section title="get" class="requests" id="requests">
-      <h2>Quotes Library!</h2>
+      <h2 class="fancyGradient">Quotes Library!</h2>
       <p>Get your favorite quotes!</p>
       <div aria-label="input text section follows" class="requests__get"/>
-        <input type="text" placeholder="input text as a filter"/>
+        <input maxlength="100" type="text" placeholder="input text as a filter"/>
         <button>Get</button>
         <select id="select">
           <option value="all">all</option>
@@ -38,20 +38,32 @@
         <p>Now Try<br/>Posting!</p>
         <div>&darr;</div>
       </div>
+
       <form class="requests__post">
-        <input type="text" name="quote" required
-               placeholder="Insert new quote..."/><br/>
-        <input type="text" name="author" required
-               placeholder="Insert author..."/>
-        <button type="submit"/>Post</button>
+        <input 
+            type="text" 
+            name="quote" 
+            required
+            minlength="10"
+            maxlength="100" 
+            placeholder="Insert new quote..."/>
+        <br/>
+        <input 
+            type="text"
+            name="author"
+            minlength="5" 
+            maxlength="50"
+            placeholder="Insert author..."/>
+        <button type="submit"/>P<br/>o<br/>s<br/>t</button>
       </form>
 
-    </section>
+<!-- author isnt required but we add "missing" author -->
+  </section>
 
     <div id="quotes" class="quotes">
       <ul class="quotes__ul"></ul>
     </div>
 
-    <script src="./browser.js"></script>
+    <script src="./js/browser.js"></script>
   </body>
 </html>

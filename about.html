@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -10,52 +11,57 @@
 
 <p>Let's list the necessary components:</p>
 <ul>
-    <li>Huge Network (the cloud, or the World Wide Web)</li>
-    <li>A Client (a program in your computer)</li>
-    <li>A Server (a program in other computer)</li>
+    <li>Huge Network</li>
+    <li>A Client (program in your computer)</li>
+    <li>A Server (program in other computer)</li>
 </ul>
 <p>This is indeed the sort of picture I have in mind:</p>
 <a href="cloud.jpg" title="click to enlarge."><img src="cloud.jpg" alt="Your pc, on the right. The server computer on the right. they connect through lines, representing the network."></a>
 </section>
-    
+<!-- (The Cloud, Internet, or World Wide Web) --> 
 <section title="theory, improving the model">
-<h2>A step further</h2>
-<p>I like to think of the Cloud as the countries, cities, towns, houses; they themselves connected through highways, roads, streets. (Or did Elon Musk invented something new?!). The network/cloud allows communication, but in this case, between computers.</p>
+<h2>A step further: Top down idea</h2>
+<p>The previous list includes <em>Huge Network</em>, this is: The Cloud, the World Wide Web, or the internet. All of them are synonyms, and they are used in a lazy way, so be ready guess the meaning.</p>
 
-<p class="sidenote">We could conversely think of the "physical" world of cities, and so on, as a network. A network is just a bunch of connected parts, called Nodes. Each node would be, for example, a city.</p>
+<p>In a map, there are countries, cities, towns,... ; they themselves connected through highways, roads. For us, there are computers (cities or towns) connected by roads (links). The data (cars) flows on this roads. The Cloud or WWW is the whole thing, the map.</p>
 
-<p>This communication, as we listed, needs not only the Cloud, but a server and a client. Again, if we think of The Cloud as streets and houses, then the server is the market (provides a service), and you (your browser) is the client.</p>
+<--!  <p class="sidenote">Conversely, we could think of the "physical" world of cities, and so on, as a network. A network is just a bunch of connected parts, called Nodes. Each node would be, for example, a city.</p> -->
 
-<p>So the server and the client are 2 computers communicated over the cloud. This is the most crazy idea here.</p>
+ <p>This communication is between a server and a client. To keep the analogy, the server is the Market/Provider (provides a service), and you (your browser) is the client.</p>
 
-<p>I will just turn it slightly crazier. Web servers (the market), and Web Browsers (you) are not the only type of connection between 2 computers. But this is a topic for another post.</p>
+<p>So the server and the client are 2 computers (cities or houses) communicating to each other. This is the most crazy idea here.</p>
+
+<p>I will just turn it slightly crazier. Web servers (the market), and Web Browsers (you) are not the only type of connection between 2 computers. There are many others. But this is a topic for another post.</p>
 </section>
 
 <section title="refreshing the previous discussion">
-<h2>Wrapping up</h2>
-<p>Once we start a server on a computer, it can connect to other computers. A web server is basically a server that can be reached using a Web Browser.</p>
+<h2>Last bits</h2>
+
+<p>Once a server is started on a computer, we can connect to it from home. A web server is basically a server that can be reached using a Web Browser. <a href="https://google.com">https://google.com</a> is a web server, any newspaper site, any site! We always connect to this computer providing a service (server).</p>
+
 <p>(Because a server can connect to other computers, a server can be hacked out. But it's not that easy.)</p>
+
 <p>The most interesting part is that we can share information between 2 different computers (this is phones, PCs, etc.)</p>
-<p>The page you're seeing right now is "hosted" in a server. It means that this is much like seeing a Word Document, but the file is actually in my -as opposed to your- computer.</p>
+
+<p>The page you're seeing right now is "hosted" in a server. It means that this is much like seeing a Word Document, but the file is actually in my -as opposed to your- computer!</p>
 </section>
 
 <section title="Apply the knowledge">
 <h2>Now that we have a Model</h2>
 <p>Now that we have a model, we can think and understand</p>
 
+<p>With this simple model, we can understand a phenomena like Latency. Latency is the time between the car leaves and comes back to town.</p>
+
 <p>By clicking a link down below, you're <strong>requesting</strong> a file to a web server. It <strong>responds</strong> with a file, if it exists, or it returns "404 not found"! </p>
 
-<a href="test.html">Request a webpage</a>
+<a href="index.html">Request a webpage (HomePage)</a>
 <a href="test.json">Request JSON file</a>
 <a href="cloud.jpg">Request an Image</a>
 <a href="nothing">See how it fails</a>
 </section>
 
-<section title="get">
-  <button id="btn">Get Data</button>
-<ul id="ul">
-    
-</ul>
+<p>If you visit the home page, you'll get to play even more</p>
+
 </section>
 <script src="browser.js"></script>
 </body>

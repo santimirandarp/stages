@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "nodemon": "nodemon express.js --watch",
-    "watcher":"nodemon express.js --watch & sass resources/index.scss resources/index.css --watch &"
+    "watcher":"nodemon express.js --watch & sass resources/scss/index.scss resources/css/index.css --watch &"
   },
   "keywords": [],
   "author": "",
