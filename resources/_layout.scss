@@ -1,11 +1,11 @@
 body{
-  padding:1rem;
-  height:100%;
-  min-height: 100vh;
+  padding:1.5rem;
+  padding-top:3rem;
   display:grid;
-  grid-template-rows: minmax(400px, 0.3fr) minmax(400px, 0.6fr);
+  align-items:start;
   grid-template-columns: 0.33fr 0.66fr;
   grid-template-areas:
   "nav requests requests"
+  "info requests requests"
   "quotes quotes quotes";
 }

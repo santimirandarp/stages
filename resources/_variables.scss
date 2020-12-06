@@ -1,0 +1,13 @@
+$bodyFontCol:white;
+$bg:#121212;
+$bgCode:change-color($color:$bg, $alpha:0.9);
+$linkFontColor:rgba(114, 114, 189, 0.9);
+$navBgColor:#461e1ea6;
+$oddItemColor:#a2a2a2;
+$evenItemColor:#454545;
+$gradientLeft:change-color($color:$linkFontColor, $alpha:1);
+$gradientRight:change-color($color:#760e0e, $alpha:1);
+
+$fontSize:16px;
+$borderLeftWidgets:rgba(10,10,10,0.9);
+$inputMargin:1rem;

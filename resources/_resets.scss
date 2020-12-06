@@ -1,0 +1,14 @@
+@use "variables";
+* {
+  padding:0; 
+  margin:0; 
+  border:none;
+  border-radius:0;
+  box-sizing:border-box
+}
+html{font-size:variables.$fontSize}
+ul{list-style-type:none;}
+a{text-decoration:none}
+button:hover, a:hover {
+  cursor:pointer;
+}

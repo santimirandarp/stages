@@ -1,7 +1,9 @@
+@use "resets";
+@use "variables" as *;
 @use "fonts";
 @use "layout";
-@mixin center(){ display:grid; place-items:center; }
 
+@mixin center(){ display:grid; place-items:center; }
 
 @mixin flexCenter($dir){
   display:flex;
@@ -10,30 +12,14 @@
   justify-content:center;
 }
 
-$linkColor:rgba(114, 114, 189, 0.9);
-$color:white;
-$bg:#121212;
-$navColor:#461e1ea6;
-$fontSize:16px;
-$borderLeftWidgets:rgba(10,10,10,0.9);
-$inputMargin:1rem;
-$oddItemColor:#a2a2a2;
-$evenItemColor:#454545;
-
 //general defs
-* {
-  padding:0; 
-  margin:0; 
-  border:none;
-  border-radius:0;
-  box-sizing:border-box
+h2 {
+color:transparent;
+background-clip:text;
+background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
 }
-html{font-size:$fontSize}
-ul{list-style-type:none;}
-button:hover, a:hover {
-  cursor:pointer;
-}
-input {background-color:rgb(255,255,255);
+
+input {
   opacity:0.85;
   &:focus{ 
     opacity:1;
@@ -42,28 +28,28 @@ input {background-color:rgb(255,255,255);
 
 a {
   font-variant:small-caps;
-  font-weight:500;
-  text-decoration:none;
-  color:$linkColor;
+  color:$linkFontColor;
 }
 
-body {
+button, select{
+font-variant:small-caps;
+font-size:0.9rem;
+letter-spacing:1px;
 }
 
 body{
   //body grid is in "layout
-  color:$color;
+  color:$bodyFontCol;
   background-color:$bg;
   text-align:center;
-  font-family:"sans-serif";
   font-size:$fontSize;
 }
-
+.inlineCode{background-color:$bgCode }
 // by component, top to bottom
 #navbar{
   grid-area:nav;
   align-self:center;
-  background-color: $navColor;
+  background-color: $navBgColor;
   & > ul{
     display:flex;
     flex-direction:column;
@@ -73,14 +59,15 @@ body{
 #requests {
   @include flexCenter(column);
   grid-area:requests;
-  & > * {width:65%;}
+  & > * {width:70%;}
 }
 
-.requests__get, 
-.requests__post {
+.requests {
+  &__get, &__post{
   display:grid;
   grid-template-columns:1fr 4rem;
   row-gap:$inputMargin;
+  h2{margin-top:0}
   & > * { padding:1rem }; 
   //bc font size is same,
   //padding^^ will yield same height
@@ -89,13 +76,44 @@ body{
     &:hover{
       background-color:lightblue
 } } }
-.requests__post{
-}
-.requests__get{
+
+&__get{
   padding-bottom: 2rem;
   grid-template-columns:1fr 4rem 5rem;
 }
+&__post{ 
+  input[name=quote]{
+   grid-area:inputQuote;
+  }
+  input[name=author]{
+      grid-area:inputAuthor
+    }
+  button{
+    font-variant:small-caps;
+    font-size:1.0rem;
+    grid-area:sendFormButton;
+  }
+  grid-template-areas:
+  "inputQuote sendFormButton"
+  "inputAuthor sendFormButton"
 
+ }}
+.requests__dropdown {
+  p {margin-bottom:0}
+  background-color: adjust-color($color:$gradientRight, $alpha:-0.2);
+  clip-path: circle(13.30% at center center);
+  padding: 1.5rem;
+  transition: 0.1s transform ease-in;
+  margin-bottom:1rem;
+&:hover{
+  cursor:pointer;
+  transform: scale(1.1);
+} }
+
+#info{
+grid-area:info;
+align-self:end;
+}
 #quotes{
   grid-area:quotes;
   max-height:300px;
