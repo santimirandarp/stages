@@ -19,7 +19,7 @@ let quotes
 
     quotes = await call.db("todos")
       .collection("quotes")
-      .insertOne( {"quote":item})
+      .insertOne( {"quote":item.quote, "author":item.author})
   } catch(e){
     console.log(e)
     throw "Couldn't post the quote, please try again"

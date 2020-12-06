@@ -9,6 +9,6 @@
 html{font-size:variables.$fontSize}
 ul{list-style-type:none;}
 a{text-decoration:none}
-button:hover, a:hover {
+button:hover, a:hover, select:hover {
   cursor:pointer;
 }

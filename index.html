@@ -25,14 +25,14 @@
     <section title="get" class="requests" id="requests">
       <h2 class="fancyGradient">Quotes Library!</h2>
       <p>Get your favorite quotes!</p>
-      <div aria-label="input text section follows" class="requests__get"/>
-        <input maxlength="100" type="text" placeholder="input text as a filter"/>
-        <button>Get</button>
+      <form aria-label="input text section follows" class="requests__get"/>
+        <input pattern="^[^\x22\x27]+$" maxlength="100" type="text" placeholder="input text as a filter"/>
+        <button type="submit">Get</button>
         <select id="select">
           <option value="all">all</option>
           <option value="sample">sample 5</option>
         </select>
-      </div>
+      </form>
 
       <div class="requests__dropdown">
         <p>Now Try<br/>Posting!</p>
@@ -41,6 +41,7 @@
 
       <form class="requests__post">
         <input 
+            pattern="^[^\x22\x27]+$"
             type="text" 
             name="quote" 
             required
@@ -49,6 +50,7 @@
             placeholder="Insert new quote..."/>
         <br/>
         <input 
+            pattern="^[^\x22\x27]+$"
             type="text"
             name="author"
             minlength="5" 

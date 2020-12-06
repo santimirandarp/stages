@@ -1,17 +1,242 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @use "resets";
- *   | ^^^^^^^^^^^^^
- *   '
- *   resources/index.scss 1:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use \"resets\";\a   \2502  ^^^^^^^^^^^^^\a   \2575 \a   resources/index.scss 1:1  root stylesheet";
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
 }
+
+html {
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:hover, a:hover, select:hover {
+  cursor: pointer;
+}
+
+body {
+  background: white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 3.38rem 0 1.38rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+}
+
+h2 {
+  font-size: 2.441rem;
+}
+
+h3 {
+  font-size: 1.953rem;
+}
+
+h4 {
+  font-size: 1.563rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+small, .text_small {
+  font-size: 0.8rem;
+}
+
+body {
+  padding: 1.5rem;
+  padding-top: 3rem;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 0.33fr 0.66fr;
+  grid-template-areas: "nav requests requests" "info requests requests" "quotes quotes quotes";
+}
+
+h2 {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #7272bd, #760e0e);
+}
+
+input {
+  opacity: 0.85;
+}
+input:focus {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+a {
+  font-variant: small-caps;
+  color: rgba(114, 114, 189, 0.9);
+}
+
+button, select {
+  font-variant: small-caps;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+body {
+  color: white;
+  background-color: #121212;
+  text-align: center;
+  font-size: 16px;
+}
+
+.inlineCode {
+  background-color: rgba(18, 18, 18, 0.9);
+}
+
+#navbar {
+  grid-area: nav;
+  align-self: center;
+  background-color: #461e1ea6;
+}
+#navbar > ul {
+  display: flex;
+  flex-direction: column;
+}
+#navbar > ul > li {
+  padding: 1.2rem;
+}
+
+#requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: requests;
+}
+#requests > * {
+  width: 70%;
+}
+
+.requests__get, .requests__post {
+  display: grid;
+  grid-template-columns: 1fr 4rem;
+  row-gap: 1rem;
+}
+.requests__get h2, .requests__post h2 {
+  margin-top: 0;
+}
+.requests__get > *, .requests__post > * {
+  padding: 1rem;
+}
+.requests__get button, .requests__get select, .requests__post button, .requests__post select {
+  border-left: 1px solid rgba(10, 10, 10, 0.9);
+}
+.requests__get button:hover, .requests__get select:hover, .requests__post button:hover, .requests__post select:hover {
+  background-color: lightblue;
+}
+.requests__get {
+  padding-bottom: 2rem;
+  grid-template-columns: 1fr 4rem 5rem;
+}
+.requests__post {
+  grid-template-areas: "inputQuote sendFormButton" "inputAuthor sendFormButton";
+}
+.requests__post input[name=quote] {
+  grid-area: inputQuote;
+}
+.requests__post input[name=author] {
+  grid-area: inputAuthor;
+}
+.requests__post button {
+  font-variant: small-caps;
+  font-size: 1rem;
+  grid-area: sendFormButton;
+}
+
+.requests__dropdown {
+  background-color: rgba(118, 14, 14, 0.8);
+  clip-path: circle(13.3% at center center);
+  padding: 1.5rem;
+  transition: 0.1s transform ease-in;
+  margin-bottom: 1rem;
+}
+.requests__dropdown p {
+  margin-bottom: 0;
+}
+.requests__dropdown:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#info {
+  grid-area: info;
+  align-self: end;
+}
+
+#quotes {
+  grid-area: quotes;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 1rem;
+}
+
+.quotes__ul > li {
+  display: table;
+  margin: auto;
+  text-align: center;
+  padding: 0.8rem;
+}
+.quotes__ul > li:nth-child(odd) {
+  background-color: #a2a2a2;
+}
+.quotes__ul > li:nth-child(even) {
+  background-color: #454545;
+}
+
+@media only screen and (max-width: 800px) {
+  #navbar > ul {
+    display: flex;
+    flex-direction: column;
+  }
+  #navbar > ul > li {
+    padding: 1rem;
+  }
+
+  .requests {
+    flex-basis: 100%;
+  }
+
+  .requests__get,
+.requests__post {
+    grid-template-columns: 1fr 3rem;
+  }
+  .requests__get > *,
+.requests__post > * {
+    padding: 0.8rem;
+  }
+
+  .requests__get {
+    margin-bottom: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
