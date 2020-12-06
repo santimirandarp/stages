@@ -151,6 +151,7 @@ body {
 .requests__get button:hover, .requests__get select:hover, .requests__post button:hover, .requests__post select:hover {
   background-color: lightblue;
 }
+
 .requests__get {
   padding-bottom: 2rem;
   grid-template-columns: 1fr 4rem 5rem;
@@ -168,6 +169,15 @@ body {
   font-variant: small-caps;
   font-size: 1rem;
   grid-area: sendFormButton;
+}
+.requests__response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.requests__response img {
+  width: 100px;
 }
 
 .requests__dropdown {
@@ -192,10 +202,10 @@ body {
 
 #quotes {
   grid-area: quotes;
-  max-height: 300px;
+  max-height: 450px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 1rem;
+  margin: 2rem;
 }
 
 .quotes__ul > li {

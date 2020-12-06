@@ -14,9 +14,9 @@
 
 //general defs
 h2 {
-color:transparent;
-background-clip:text;
-background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
+  color:transparent;
+  background-clip:text;
+  background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
 }
 
 input {
@@ -32,9 +32,9 @@ a {
 }
 
 button, select{
-font-variant:small-caps;
-font-size:0.9rem;
-letter-spacing:1px;
+  font-variant:small-caps;
+  font-size:0.9rem;
+  letter-spacing:1px;
 }
 
 body{
@@ -64,40 +64,47 @@ body{
 
 .requests {
   &__get, &__post{
-  display:grid;
-  grid-template-columns:1fr 4rem;
-  row-gap:$inputMargin;
-  h2{margin-top:0}
-  & > * { padding:1rem }; 
-  //bc font size is same,
-  //padding^^ will yield same height
-  & button, select{ 
-    border-left:1px solid $borderLeftWidgets;
-    &:hover{
-      background-color:lightblue
-} } }
+    display:grid;
+    grid-template-columns:1fr 4rem;
+    row-gap:$inputMargin;
+    h2{margin-top:0}
+    & > * { padding:1rem }; 
+    //bc font size is same,
+    //padding^^ will yield same height
+    & button, select{ 
+      border-left:1px solid $borderLeftWidgets;
+      &:hover{
+        background-color:lightblue
+} } }}
 
-&__get{
-  padding-bottom: 2rem;
-  grid-template-columns:1fr 4rem 5rem;
-}
-&__post{ 
-  input[name=quote]{
-   grid-area:inputQuote;
+.requests {
+  &__get{
+    padding-bottom: 2rem;
+    grid-template-columns:1fr 4rem 5rem;
   }
-  input[name=author]{
+  &__post{ 
+    input[name=quote]{
+      grid-area:inputQuote;
+    }
+    input[name=author]{
       grid-area:inputAuthor
     }
-  button{
-    font-variant:small-caps;
-    font-size:1.0rem;
-    grid-area:sendFormButton;
-  }
-  grid-template-areas:
-  "inputQuote sendFormButton"
-  "inputAuthor sendFormButton"
+    button{
+      font-variant:small-caps;
+      font-size:1.0rem;
+      grid-area:sendFormButton;
+    }
+    grid-template-areas:
+    "inputQuote sendFormButton"
+    "inputAuthor sendFormButton"
 
- }}
+  }
+  &__response{
+  @include flexCenter(column);
+  img {width:100px;} 
+}
+}
+
 .requests__dropdown {
   p {margin-bottom:0}
   background-color: adjust-color($color:$gradientRight, $alpha:-0.2);
@@ -105,21 +112,21 @@ body{
   padding: 1.5rem;
   transition: 0.1s transform ease-in;
   margin-bottom:1rem;
-&:hover{
-  cursor:pointer;
-  transform: scale(1.1);
+  &:hover{
+    cursor:pointer;
+    transform: scale(1.1);
 } }
 
 #info{
-grid-area:info;
-align-self:end;
+  grid-area:info;
+  align-self:end;
 }
 #quotes{
   grid-area:quotes;
-  max-height:300px;
+  max-height:450px;
   overflow-y:auto;
   overflow-x:hidden;
-  padding-bottom:1rem;
+  margin:2rem;
 }
 
 .quotes__ul > li{
@@ -139,7 +146,7 @@ align-self:end;
       flex-direction:column;
       & > li {padding:1rem}
   }}
- .requests{flex-basis:100%;}
+  .requests{flex-basis:100%;}
   .requests__get, 
   .requests__post {
     grid-template-columns:1fr 3rem;

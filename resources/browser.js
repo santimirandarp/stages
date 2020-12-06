@@ -55,9 +55,15 @@ form.addEventListener("submit", (e) => {
   author = inputAuthor.value || "missing"
   quote = inputQuote.value.trim()
   const sendTo= `${baseUri}/post`
+  quotesUl.innerHTML=`Sending data..!`
   fetch(sendTo, fetchOptions({author:author, quote:quote}))
-    .then(res => res.json())
-    .then(d => console.log(d))
-    .catch(e => "Please, try again.")
+  .then(res => res.text()).then( success => {
+      quotesUl.innerHTML=`<div class="requests__response"><p>
+      ${quote}<br/>by ${author}</p><p>${success}</p><img src="./img/checkmark.png"
+    class="request__response-img" alt="image yet"/></div>`
+      inputAuthor.value = ""
+      inputQuote.value = ""
+      return 1
+    }).catch(e => "Please, try again.")
 })
 
