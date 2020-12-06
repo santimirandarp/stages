@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const path = require("path")
 //const logger = require("morgan")
-const dbcalls = require("./dbcalls")
+const dbcalls = require("./serverJs/dbcalls")
 
 app.use(express.static(path.join(__dirname + "/resources")))
 

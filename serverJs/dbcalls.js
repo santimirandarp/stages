@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const bodyParser = require("body-parser")
-const { mongoGetItems, mongoPostItem } = require("./resources/linkToDatabase")
-const { setQuery } = require("./resources/setQuery")
+const { mongoGetItems, mongoPostItem } = require("./linkToDatabase")
+const { setQuery } = require("./setQuery")
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 //quotes call, root
