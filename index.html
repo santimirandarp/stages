@@ -9,6 +9,8 @@
 
   <body>
 
+
+
     <nav id="navbar">
       <ul>
         <li><a href="/">Home</a></li>
@@ -16,17 +18,24 @@
       </ul>
     </nav>
 
+
+
+
     <section id="info">
       <h2 class="fancyGradient">Miscellaneous</h2>
       <p>
-      Please, try to avoid special characters <code class="inlineCode">( / * % . $ " @</code>. Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
+      Please, avoid special characters like <code class="inlineCode">[ / * % $ " @</code>. Start quotes using <code class="inlineCode">"</code> will reject the request.</p>
+      <p>Find the <a href="https://github.com/santimirandarp">Quotes Library</a> on Github.</p>
     </section>
 
+
+      
     <section title="get" class="requests" id="requests">
       <h2 class="fancyGradient">Quotes Library!</h2>
-      <p>Get your favorite quotes!</p>
+      <p><label for="inputGet" >Get your favorite quotes!</label></p>
+
       <form aria-label="input text section follows" class="requests__get"/>
-        <input pattern="^[^\x22\x27]+$" maxlength="100" type="text" placeholder="input text as a filter"/>
+        <input name="inputGet" value="" aria-required="true" pattern="[^\*\x22\^=\+%\$\.,<>\[\]\}\{\|@£#\\]*" maxlength="100" type="text" placeholder="input text as a filter"/>
         <button type="submit">Get</button>
         <select id="select">
           <option value="all">all</option>
@@ -41,16 +50,16 @@
 
       <form class="requests__post">
         <input 
-            pattern="^[^\x22\x27]+$"
+            pattern="[^\*\x22\^&=+%\$\.,<>\[\]\}\{\|@\£#\\]"
             type="text" 
             name="quote" 
             required
-            minlength="10"
+            minlength="7"
             maxlength="100" 
             placeholder="Insert new quote..."/>
         <br/>
         <input 
-            pattern="^[^\x22\x27]+$"
+            pattern="[^\*\x22\^&=+%\$\.,<>\[\]\}\{\|@\£#\\]"
             type="text"
             name="author"
             minlength="5" 
@@ -59,12 +68,16 @@
         <button type="submit"/>P<br/>o<br/>s<br/>t</button>
       </form>
 
-<!-- author isnt required but we add "missing" author -->
+<!-- author not required, if missed we add "missing"  -->
   </section>
+
+
 
     <div id="quotes" class="quotes">
       <ul class="quotes__ul"></ul>
     </div>
+
+
 
     <script src="browser.js"></script>
   </body>

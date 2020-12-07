@@ -25,7 +25,10 @@ input {
     opacity:1;
     transition:opacity 0.3s ease;
 }}
-
+.errorInput {
+  &::before{
+    content:"Format is not valid. Try again."
+  }}
 a {
   font-variant:small-caps;
   color:$linkFontColor;
@@ -44,7 +47,11 @@ body{
   text-align:center;
   font-size:$fontSize;
 }
-.inlineCode{background-color:$bgCode }
+.inlineCode{
+display:inline-block;
+background-color:$bgCode;
+padding:0 3px;
+}
 // by component, top to bottom
 #navbar{
   grid-area:nav;

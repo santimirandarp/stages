@@ -88,6 +88,10 @@ input:focus {
   transition: opacity 0.3s ease;
 }
 
+.errorInput::before {
+  content: "Format is not valid. Try again.";
+}
+
 a {
   font-variant: small-caps;
   color: rgba(114, 114, 189, 0.9);
@@ -107,7 +111,9 @@ body {
 }
 
 .inlineCode {
-  background-color: rgba(18, 18, 18, 0.9);
+  display: inline-block;
+  background-color: rgba(40, 40, 40, 0.8);
+  padding: 0 3px;
 }
 
 #navbar {

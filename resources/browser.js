@@ -1,11 +1,9 @@
-//the html class naming is organized in a way that sections determine the class name of any
-// sub element. There shouldn't be any 2 sections with same class
-// then all subelements' name are unique.
+//sections use a unique descriptive word. BEM convention.
 const select = document.querySelector(".requests__get select")
 const inputGet = document.querySelector(".requests__get input")
 const formGet = document.querySelector(".requests__get")
 
-const form = document.querySelector(".requests__post")
+const formPost = document.querySelector(".requests__post")
 const postInputs = document.querySelectorAll(".requests__post input")
 const inputQuote = postInputs[0]
 const inputAuthor = postInputs[1]
@@ -36,11 +34,21 @@ const drawList = items => {
   ) : ( quotesUl.innerHTML = `<li>no matches</li>` )
 }
 
-formGet.addEventListener("submit", (e)=>{
+const treatString = (quote) => {
+ if(quote.charAt(0)=="'"||"\""){
+   quote = quote.replace(quote.charAt(0), "")
+}
+ if(quote.charAt(quote.length-1)=="'"||"\""){
+   quote = quote.replace(quote.charAt(quote.length-1), "")
+ }
+return quote 
+}
+
+formGet.addEventListener("submit", e => {
   e.preventDefault()
   let quote, selected
   selected = select.value
-  quote = inputGet.value.trim() || "-"
+  quote = treatString(inputGet.value) || "-"
   const sendTo = `${baseUri}/${selected}/${quote}`
   quotesUl.innerHTML = "Wait..."
   fetch(sendTo)
@@ -49,7 +57,7 @@ formGet.addEventListener("submit", (e)=>{
     .catch(e => quotesUl.innerHTML= "Please, try again.")
 })
 
-form.addEventListener("submit", (e) => {
+formPost.addEventListener("submit", (e) => {
   e.preventDefault()
   let quote, author
   author = inputAuthor.value || "missing"
