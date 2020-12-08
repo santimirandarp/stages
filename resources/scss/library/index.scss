@@ -1,170 +1,29 @@
-@use "resets";
 @use "variables" as *;
+@use "resets";
+@use "utils";
 @use "fonts";
 @use "layout";
+@use "general";
+@use "navbar";
+@use "requests";
 
-@mixin center(){ display:grid; place-items:center; }
-
-@mixin flexCenter($dir){
-  display:flex;
-  flex-direction:$dir;
-  align-items:center;
-  justify-content:center;
-}
-
-//general defs
-h2 {
-  color:transparent;
-  background-clip:text;
-  background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
-}
-
-input {
-  opacity:0.85;
-  &:focus{ 
-    opacity:1;
-    transition:opacity 0.3s ease;
-}}
-.errorInput {
-  &::before{
-    content:"Format is not valid. Try again."
-  }}
-a {
-  font-variant:small-caps;
-  color:$linkFontColor;
-}
-
-button, select{
-  font-variant:small-caps;
-  font-size:0.9rem;
-  letter-spacing:1px;
-}
-
-body{
-  //body grid is in "layout
-  color:$bodyFontCol;
-  background-color:$bg;
-  text-align:center;
-  font-size:$fontSize;
-}
-.inlineCode{
-display:inline-block;
-background-color:$bgCode;
-padding:0 3px;
-}
-// by component, top to bottom
-#navbar{
-  grid-area:nav;
-  align-self:center;
-  background-color: $navBgColor;
-  & > ul{
-    display:flex;
-    flex-direction:column;
-    & > li {padding:1.2rem}
-}}
-
-#requests {
-  @include flexCenter(column);
-  grid-area:requests;
-  & > * {width:70%;}
-}
-
-.requests {
-  &__get, &__post{
-    display:grid;
-    grid-template-columns:1fr 4rem;
-    row-gap:$inputMargin;
-    h2{margin-top:0}
-    & > * { padding:1rem }; 
-    //bc font size is same,
-    //padding^^ will yield same height
-    & button, select{ 
-      border-left:1px solid $borderLeftWidgets;
-      &:hover{
-        background-color:lightblue
-} } }}
-
-.requests {
-  &__get{
-    padding-bottom: 2rem;
-    grid-template-columns:1fr 4rem 5rem;
-  }
-  &__post{ 
-    input[name=quote]{
-      grid-area:inputQuote;
-    }
-    input[name=author]{
-      grid-area:inputAuthor
-    }
-    button{
-      font-variant:small-caps;
-      font-size:1.0rem;
-      grid-area:sendFormButton;
-    }
-    grid-template-areas:
-    "inputQuote sendFormButton"
-    "inputAuthor sendFormButton"
-
-  }
-  &__response{
-  @include flexCenter(column);
-  img {width:100px;} 
-}
-}
-
-.requests__dropdown {
-  p {margin-bottom:0}
-  background-color: adjust-color($color:$gradientRight, $alpha:-0.2);
-  clip-path: circle(13.30% at center center);
-  padding: 1.5rem;
-  transition: 0.1s transform ease-in;
-  margin-bottom:1rem;
-  &:hover{
-    cursor:pointer;
-    transform: scale(1.1);
-} }
-
-#info{
-  grid-area:info;
-  align-self:end;
-}
 #quotes{
-  grid-area:quotes;
   max-height:450px;
   overflow-y:auto;
-  overflow-x:hidden;
-  margin:2rem;
 }
 
 .quotes__ul > li{
   display: table;
   margin: auto;
-  text-align:center;
   padding:0.8rem;
   &:nth-child(odd){ background-color:$oddItemColor};
   &:nth-child(even){ background-color:$evenItemColor}
 }
 
 
-@media only screen and (max-width: 800px) {
-  #navbar{
-    & > ul{
-      display:flex;
-      flex-direction:column;
-      & > li {padding:1rem}
-  }}
-  .requests{flex-basis:100%;}
-  .requests__get, 
-  .requests__post {
-    grid-template-columns:1fr 3rem;
-    & > * { padding:0.8rem }; 
-  }
-  //bc font size is same,
-  //padding^^ will yield same height
-  .requests__get{
-    margin-bottom:1rem;
-    grid-template-columns:1fr 1fr;
-  }
+@media only screen and (min-width: 950px) {
+  #info{ align-self:end; }
+  #quotes{ margin:2rem; }
 }
 
 

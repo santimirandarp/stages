@@ -1,0 +1,36 @@
+@use "variables" as *;
+
+h2 {
+  color:transparent;
+  background-clip:text;
+  background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
+}
+
+button, select{ 
+border-left:1px solid $borderLeftWidgets;
+  } 
+
+input {
+  opacity:0.85;
+  &:focus{ 
+    opacity:1;
+    transition:opacity 0.3s ease;
+}}
+
+a {
+  font-variant:small-caps;
+  color:$linkFontColor;
+}
+
+button, select{
+  font-variant:small-caps;
+  font-size:0.9rem;
+  letter-spacing:1px;
+}
+
+body{
+  color:$bodyFontCol;
+  background-color:$bg;
+  text-align:center;
+  font-size:$fontSize;
+}

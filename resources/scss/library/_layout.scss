@@ -1,11 +1,43 @@
-body{
-  padding:1.5rem;
-  padding-top:3rem;
+@use "variables" as *;
+body {
   display:grid;
-  align-items:start;
-  grid-template-columns: 0.33fr 0.66fr;
+  padding:calc(0.3rem + 2vw);
+  max-width:600px;
+  margin:auto;
+  grid-template-columns: 1fr;
   grid-template-areas:
-  "nav requests requests"
-  "info requests requests"
-  "quotes quotes quotes";
+  "requests"
+  "quotes"
+  "info"
+}
+
+#requests { grid-area:requests; }
+#info{ grid-area:info; }
+#quotes{ grid-area:quotes; }
+
+@media screen and (min-width:750px){
+  body{
+  padding:1rem;
+  padding-top: calc(#{$navHeight} + 2rem);
+}
+}
+
+@media screen and (min-width:1000px){
+body{
+  max-width:initial;
+  align-items:start;
+  column-gap:1rem;
+  grid-template-columns:  0.66fr 0.33fr;
+  grid-template-areas:
+  "requests info "
+  "quotes quotes";
+}
+}
+@media screen and (min-width:1200px){
+body{
+  grid-template-areas:
+  "requests nav"
+  "requests info"
+  "quotes quotes";
+}
 }

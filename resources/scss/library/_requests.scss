@@ -1,0 +1,102 @@
+@use "variables" as *;
+
+button{padding:1rem}
+
+@mixin gridGet(){
+     display:grid;
+    input[name=inputGet]{
+      grid-area:inputGet;
+    }
+    button{
+      grid-area:get
+    }
+    select{
+      grid-area:select
+    }
+    grid-template-areas:
+    "inputGet inputGet"
+    "get select"
+  }
+
+@mixin gridPost(){
+    .quoteWrapper{
+      grid-area:inputQuote;
+    }
+    .authorWrapper{
+      grid-area:inputAuthor
+    }
+    button{
+      grid-area:post;
+    }
+    grid-template-areas:
+    "inputQuote inputQuote"
+    "inputAuthor inputAuthor"
+    ". post"
+}
+
+
+.requests {
+  &__get, &__post {
+   > div > * {   
+    padding:1rem;
+    width:100% 
+   }}
+  &__response{
+    @include flexCenter(column);
+    img {width:100px;} 
+  }
+}
+
+.requests {
+  &__post{ 
+    display:none; 
+  @include gridPost;
+}
+  &__get > .wrapper{
+     @include gridGet; 
+    row-gap:$inputMargin;
+}}
+
+.requests__dropdown {
+  display:inline-block;
+  padding: 1.0rem;
+  margin-top:calc(1rem + 1vw);
+  margin-bottom:calc(0.5rem + 1vw);
+  p {margin-bottom:0}
+  border-radius:5px;
+  box-shadow:1px 1px 3px white;
+  background-color: adjust-color($color:$gradientRight, $alpha:-0.2);
+  transition: 0.1s transform ease-in;
+  &:hover{
+    cursor:pointer;
+    transform: scale(1.1);
+} }
+
+@media only screen and (min-width: 750px) {
+  .requests {
+    @include center();
+    h2 { margin-top:0 }
+     > * {width:85%;} 
+    &__get > .wrapper{
+      grid-template-columns:1fr 4rem 5rem;
+      grid-template-areas:
+      "inputGet inputGet select"
+      " . get get"
+    }
+    &__post{ 
+      row-gap:$inputMargin;
+      display:grid;
+      grid-template-columns:1fr 6rem;
+    }
+  }
+
+  .requests__dropdown {
+    clip-path: circle(13.30% at center center);
+    padding: 1.5rem;
+  }
+}
+
+@media only screen and (min-width:950px){
+  .requests {
+    & > * {width:70%;} 
+}}

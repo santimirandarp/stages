@@ -1,0 +1,25 @@
+@use "variables" as *;
+#navbar{
+  width:100%;
+  top:0;
+  left:0;
+  position:absolute;
+  background-color: $navBgColor;
+  & > ul{
+    display:flex;
+    flex-direction:row;
+    & > li > a {
+      display:inline-block;
+    padding:$navPadding}
+} }
+
+@media screen and (min-width:1200px){
+  #navbar{
+  grid-area:nav;
+  position:static;
+    align-self:center;
+    & > ul{
+      flex-direction:column;
+  }}
+}
+
