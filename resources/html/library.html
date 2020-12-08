@@ -1,11 +1,11 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="/library/index.css" rel="stylesheet"/>
-  </head>
+<head>
+  <meta charset="utf-8"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="/library/index.css" rel="stylesheet"/>
+</head>
 
   <body>
 
@@ -30,17 +30,19 @@
 
 
       
-    <section title="get" class="requests" id="requests">
+    <section class="requests" id="requests">
       <h2 class="fancyGradient">Quotes Library!</h2>
       <p><label for="inputGet" >Get your favorite quotes!</label></p>
 
       <form aria-label="input text section follows" class="requests__get"/>
+        <div class="wrapper">
         <input name="inputGet" value="" aria-required="true" pattern="[^\*\x22\^=\+%\$\.,<>\[\]\}\{\|@£#\\]*" maxlength="100" type="text" placeholder="input text as a filter"/>
         <button type="submit">Get</button>
         <select id="select">
           <option value="all">all</option>
           <option value="sample">sample 5</option>
         </select>
+        </div>
       </form>
 
       <div class="requests__dropdown">
@@ -49,6 +51,7 @@
       </div>
 
       <form class="requests__post">
+        <div class="quoteWrapper">
         <input 
             pattern="[^\*\x22\^&=+%\$\.,<>\[\]\}\{\|@\£#\\]"
             type="text" 
@@ -57,7 +60,8 @@
             minlength="7"
             maxlength="100" 
             placeholder="Insert new quote..."/>
-        <br/>
+        </div>
+        <div class="authorWrapper">
         <input 
             pattern="[^\*\x22\^&=+%\$\.,<>\[\]\}\{\|@\£#\\]"
             type="text"
@@ -65,7 +69,8 @@
             minlength="5" 
             maxlength="50"
             placeholder="Insert author..."/>
-        <button type="submit"/>P<br/>o<br/>s<br/>t</button>
+        </div>
+        <button type="submit"/>Post</button>
       </form>
 
 <!-- author not required, if missed we add "missing"  -->

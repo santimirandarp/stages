@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon index.js --watch",
-    "watcher":"nodemon index.js --watch & sass resources/scss/index.scss resources/css/index.css --watch &"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

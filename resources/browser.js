@@ -34,7 +34,7 @@ const drawList = items => {
   ) : ( quotesUl.innerHTML = `<li>no matches</li>` )
 }
 
-const treatString = (quote) => {
+const rmSideQuotes = (quote) => {
  if(quote.charAt(0)=="'"||"\""){
    quote = quote.replace(quote.charAt(0), "")
 }
@@ -48,7 +48,7 @@ formGet.addEventListener("submit", e => {
   e.preventDefault()
   let quote, selected
   selected = select.value
-  quote = treatString(inputGet.value) || "-"
+  quote = rmSideQuotes(inputGet.value) || "-"
   const sendTo = `${baseUri}/${selected}/${quote}`
   quotesUl.innerHTML = "Wait..."
   fetch(sendTo)
@@ -60,8 +60,8 @@ formGet.addEventListener("submit", e => {
 formPost.addEventListener("submit", (e) => {
   e.preventDefault()
   let quote, author
-  author = inputAuthor.value || "missing"
-  quote = inputQuote.value.trim()
+  author = rmSideQuotes(inputAuthor.value) || "missing"
+  quote = rmSideQuotes(inputQuote.value)
   const sendTo= `${baseUri}/post`
   quotesUl.innerHTML=`Sending data..!`
   fetch(sendTo, fetchOptions({author:author, quote:quote}))
