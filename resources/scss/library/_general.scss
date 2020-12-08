@@ -6,11 +6,9 @@ h2 {
   background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
 }
 
-button, select{ 
-border-left:1px solid $borderLeftWidgets;
-  } 
 
 input {
+  caret-color:$gradientLeft;
   opacity:0.85;
   &:focus{ 
     opacity:1;
@@ -26,7 +24,10 @@ button, select{
   font-variant:small-caps;
   font-size:0.9rem;
   letter-spacing:1px;
+  border-left:1px solid $borderLeftWidgets; padding:.8rem 
 }
+
+button:hover{ background-color:$gradientLeft }
 
 body{
   color:$bodyFontCol;

@@ -3,10 +3,13 @@ const select = document.querySelector(".requests__get select")
 const inputGet = document.querySelector(".requests__get input")
 const formGet = document.querySelector(".requests__get")
 
+const drpDown = document.querySelector(".requests__dropdown")
+
 const formPost = document.querySelector(".requests__post")
 const postInputs = document.querySelectorAll(".requests__post input")
 const inputQuote = postInputs[0]
 const inputAuthor = postInputs[1]
+
 
 const quotesUl = document.querySelector(".quotes__ul")
 
@@ -75,3 +78,15 @@ formPost.addEventListener("submit", (e) => {
     }).catch(e => "Please, try again.")
 })
 
+
+drpDown.addEventListener("click", () => {
+    if (window.screen.width>750){
+      formPost.style.display="grid"
+      inputQuote.focus()  
+    } else {
+      if (formPost.style.display!="grid"){ 
+       formPost.style.display="grid"
+       inputQuote.focus()  
+      } else { formPost.style.display="none" }
+    }
+  })

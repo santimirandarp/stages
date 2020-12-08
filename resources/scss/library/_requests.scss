@@ -1,24 +1,27 @@
 @use "variables" as *;
 
-button{padding:1rem}
-
 @mixin gridGet(){
-     display:grid;
+    display:grid;
+    row-gap:$inputMargin;
     input[name=inputGet]{
       grid-area:inputGet;
     }
     button{
-      grid-area:get
+      grid-area:get;
     }
     select{
-      grid-area:select
+      grid-area:select;
+
     }
+    grid-template-columns:1fr repeat(2,calc(100px + 1vw)) ;
     grid-template-areas:
-    "inputGet inputGet"
-    "get select"
+    "inputGet inputGet inputGet"
+    " .  select get"
   }
 
 @mixin gridPost(){
+     grid-template-columns:1fr 6rem;
+     row-gap:$inputMargin;
     .quoteWrapper{
       grid-area:inputQuote;
     }
@@ -39,7 +42,6 @@ button{padding:1rem}
   &__get, &__post {
    > div > * {   
     padding:1rem;
-    width:100% 
    }}
   &__response{
     @include flexCenter(column);
@@ -49,12 +51,14 @@ button{padding:1rem}
 
 .requests {
   &__post{ 
-    display:none; 
+   > div > * {   
+    width:100%;
+   }
+  display:none; 
   @include gridPost;
 }
   &__get > .wrapper{
      @include gridGet; 
-    row-gap:$inputMargin;
 }}
 
 .requests__dropdown {
@@ -78,15 +82,16 @@ button{padding:1rem}
     h2 { margin-top:0 }
      > * {width:85%;} 
     &__get > .wrapper{
+     > * {   
+      width:100%;
+     }
       grid-template-columns:1fr 4rem 5rem;
       grid-template-areas:
       "inputGet inputGet select"
       " . get get"
     }
     &__post{ 
-      row-gap:$inputMargin;
       display:grid;
-      grid-template-columns:1fr 6rem;
     }
   }
 
@@ -98,5 +103,5 @@ button{padding:1rem}
 
 @media only screen and (min-width:950px){
   .requests {
-    & > * {width:70%;} 
+  &__get, &__post {width:80%;} 
 }}

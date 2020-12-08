@@ -38,6 +38,11 @@ body {
   line-height: 1.75;
 }
 
+input {
+  font-size: 1rem;
+  font-family: "Ubuntu", "sans-serif";
+}
+
 p {
   margin-bottom: 1rem;
 }
@@ -103,7 +108,7 @@ body {
 }
 @media screen and (min-width: 1000px) {
   body {
-    max-width: initial;
+    max-width: 1200px;
     align-items: start;
     column-gap: 1rem;
     grid-template-columns: 0.66fr 0.33fr;
@@ -121,11 +126,8 @@ h2 {
   background-image: linear-gradient(to right, #7272bd, #760e0e);
 }
 
-button, select {
-  border-left: 1px solid rgba(10, 10, 10, 0.9);
-}
-
 input {
+  caret-color: #7272bd;
   opacity: 0.85;
 }
 input:focus {
@@ -142,6 +144,12 @@ button, select {
   font-variant: small-caps;
   font-size: 0.9rem;
   letter-spacing: 1px;
+  border-left: 1px solid rgba(10, 10, 10, 0.9);
+  padding: 0.8rem;
+}
+
+button:hover {
+  background-color: #7272bd;
 }
 
 body {
@@ -177,13 +185,8 @@ body {
     flex-direction: column;
   }
 }
-button {
-  padding: 1rem;
-}
-
 .requests__get > div > *, .requests__post > div > * {
   padding: 1rem;
-  width: 100%;
 }
 .requests__response {
   display: flex;
@@ -197,7 +200,12 @@ button {
 
 .requests__post {
   display: none;
+  grid-template-columns: 1fr 6rem;
+  row-gap: 1rem;
   grid-template-areas: "inputQuote inputQuote" "inputAuthor inputAuthor" ". post";
+}
+.requests__post > div > * {
+  width: 100%;
 }
 .requests__post .quoteWrapper {
   grid-area: inputQuote;
@@ -210,8 +218,9 @@ button {
 }
 .requests__get > .wrapper {
   display: grid;
-  grid-template-areas: "inputGet inputGet" "get select";
   row-gap: 1rem;
+  grid-template-columns: 1fr repeat(2, calc(100px + 1vw));
+  grid-template-areas: "inputGet inputGet inputGet" " .  select get";
 }
 .requests__get > .wrapper input[name=inputGet] {
   grid-area: inputGet;
@@ -256,10 +265,11 @@ button {
     grid-template-columns: 1fr 4rem 5rem;
     grid-template-areas: "inputGet inputGet select" " . get get";
   }
+  .requests__get > .wrapper > * {
+    width: 100%;
+  }
   .requests__post {
-    row-gap: 1rem;
     display: grid;
-    grid-template-columns: 1fr 6rem;
   }
 
   .requests__dropdown {
@@ -268,8 +278,8 @@ button {
   }
 }
 @media only screen and (min-width: 950px) {
-  .requests > * {
-    width: 70%;
+  .requests__get, .requests__post {
+    width: 80%;
   }
 }
 #quotes {
