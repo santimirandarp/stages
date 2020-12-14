@@ -60,9 +60,9 @@ app.get("/login", (req, res) => {
      title:"Login",
      formId:"login",
      link:{
-       par:"New user? Register!", 
+       par:"New user?", 
        href: "register",
-       text:"Register"
+       text:" Register"
      }
 
     })
@@ -75,9 +75,9 @@ app.get("register", (req, res) => {
      title:"Registration",
      formId:"register",
      link:{
-       par:"Registered? Log In!", 
+       par:"Registered?", 
        href: "login",
-       text:"Login"
+       text:" Login"
      }})
 
 })
