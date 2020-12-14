@@ -28,3 +28,6 @@ In this stage, sockets are bundled with the database, so the user can refresh th
 On the previous stages, users are just people typing messages without being able to differentiate one another, and they do not identify in any way with the data in the DB.
 
 In this stage, we create a login system, so the user has a defined link with its own comments.
+
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
