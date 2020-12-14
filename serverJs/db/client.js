@@ -17,7 +17,7 @@ const client = new MongoClient(todosUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     authSource:"admin",
-    poolSize:20,
+    //poolSize:20,
     //tls:true,
     //reconnectTries:10, not compatible w unifiedTopology
     w:0

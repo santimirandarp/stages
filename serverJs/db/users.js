@@ -19,7 +19,7 @@ const login = async (req, res, client) => {
   try {
     let { username, password } = req.body
     if(username && password){
-      await client.connect() //we need to close later
+      await client.connect() 
       const user = await findUser(client, username, password)
       if(user){ // found user?
         req.session.loggedIn = true;
@@ -27,7 +27,7 @@ const login = async (req, res, client) => {
         res.redirect("/");
       }}} catch(e){ 
         console.log(e)
-      } finally { client.close() } 
+      } 
 } 
 
 router.post("/login", (req, res) => {

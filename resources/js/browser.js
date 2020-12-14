@@ -3,20 +3,6 @@ const user = document.querySelector("input[name=username]")
 const form = document.getElementById("login")
 const uri = "http://localhost:3000/users/login"
 
-const fetchOptions = data => {
-  return { 
-    method: 'POST', 
-    mode: 'cors', 
-    cache: 'no-cache', 
-    credentials: 'same-origin', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer', 
-    body: JSON.stringify(data)
-  }}
-
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   fetch(uri, fetchOptions({
@@ -24,9 +10,11 @@ form.addEventListener("submit", (e) => {
     "password":pwd.value 
   }))
   .then(res => {
-  if (res.redirect==true){
+  if (res.redirected==true){
+    console.log(res)
     window.location.href = res.url
   } else {
+    console.log(res)
     console.log("problem w registration")
   }}).catch(e=>console.log(e))
 })

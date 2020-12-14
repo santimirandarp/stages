@@ -7,7 +7,7 @@ const {
   mongoPostItem 
 } = require("./getOrPost")
 
-const { MongoClient } = ("./client")
+const { client } = ("./client")
 const setQueryFromUrl = require("./setQuery")
 
 const error = (code, msg, res) => res.status(code).send(msg) 
@@ -17,8 +17,7 @@ router.use(express.json())
 router.get("/:selected/:string", (req, res) => {
     const { string, selected } = req.params
     const pipeline = setQueryFromUrl(string, selected)
-    mongoGetItems(MongoClient, pipeline)
-  //client is closed inside mongoPostItem
+    mongoGetItems(client, pipeline)
     .then(quotes => res.json(quotes) )
     .catch(e => {
       console.log(e.stack)
@@ -29,7 +28,6 @@ router.get("/:selected/:string", (req, res) => {
 
 router.post("/post", async (req, res) => {
   mongoPostItem(MongoClient, req.body)
-  //client is closed inside mongoPostItem
     .then( q => res.send(`quote was successfully posted`))
     .catch(e =>  error(500, "Can't reach server", res)) 
 })

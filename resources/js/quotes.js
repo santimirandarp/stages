@@ -13,21 +13,7 @@ const inputAuthor = postInputs[1]
 
 const quotesUl = document.querySelector(".quotes__ul")
 
-const baseUri = "http://localhost:3000/todos"
-
-const fetchOptions = data => {
-return { 
-    method: 'POST', 
-    mode: 'cors', 
-    cache: 'no-cache', 
-    credentials: 'same-origin', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer', 
-    body: JSON.stringify(data)
-}}
+const baseUri = "http://localhost:3000/quote"
 
 
 const drawList = items => {
@@ -57,8 +43,8 @@ formGet.addEventListener("submit", e => {
   quotesUl.innerHTML = "Wait..."
   fetch(sendTo)
     .then(res => res.json())
-    .then(d => { quotesUl.innerHTML=""; drawList(d)} )
-    .catch(e => quotesUl.innerHTML= "Please, try again.")
+    .then(d => { quotesUl.innerHTML=""; drawList(d) } )
+    .catch(e => quotesUl.innerHTML = "Please, try again.")
 })
 
 formPost.addEventListener("submit", (e) => {
@@ -68,7 +54,7 @@ formPost.addEventListener("submit", (e) => {
   quote = rmSideQuotes(inputQuote.value)
   const sendTo= `${baseUri}/post`
   quotesUl.innerHTML=`Sending data..!`
-  fetch(sendTo, fetchOptions({author:author, quote:quote}))
+  fetch(sendTo, fetchOptions({"author":author, "quote":quote}))
   .then(res => res.text()).then( success => {
       quotesUl.innerHTML=`<div class="requests__response"><p>
       ${quote}<br/>by ${author}</p><p>${success}</p><img src="./img/checkmark.png"

@@ -1,13 +1,14 @@
 async function postItem(client, item){
 let quotes
   try{
-    await client.connect()
-    quotes = await client.db("todos")
+    const client = await client.connect()
+    quotes = await client
+      .db("todos")
       .collection("quotes")
       .insertOne( {"quote":item.quote, "author":item.author})
   } catch(e){
     throw "Couldn't post the quote, please try again"
-  } finally{ client.close() }
+  } 
 return quotes
 }
 
@@ -15,14 +16,17 @@ return quotes
 async function getItems(client, query) {
   let quotes
   try {
-    await client.connect()
-    quotes = await client.db("todos")
+    console.log("getting your fucking quote...")
+    const client = await client.connect()
+    quotes = await client
+      .db("todos")
       .collection("quotes")
       .aggregate(query)
       .toArray()
+    console.log(quotes)
   } catch (e) {
     throw `Getting quotes. Execution error.\n ${e}`
-  } finally { client.close() }
+  } 
   return quotes
 }
 
