@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const { 
+  //both are async functions => return a promise
   mongoGetItems, 
   mongoPostItem 
 } = require("./getOrPost")
@@ -27,7 +28,7 @@ router.get("/:selected/:string", (req, res) => {
 
 
 router.post("/post", async (req, res) => {
-  await mongoPostItem(MongoClient, req.body)
+  mongoPostItem(MongoClient, req.body)
   //client is closed inside mongoPostItem
     .then( q => res.send(`quote was successfully posted`))
     .catch(e =>  error(500, "Can't reach server", res)) 

@@ -1,3 +1,5 @@
+//this generates the client to connect w nice options
+// just import as "client" and use `await client.connect()`
 const { MongoClient } = require("mongodb")
 const dotenv = require("dotenv")
 dotenv.config()
@@ -15,9 +17,9 @@ const client = new MongoClient(todosUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     authSource:"admin",
-    poolSize:10,
+    poolSize:20,
     //tls:true,
-    reconnectTries:10,
+    //reconnectTries:10, not compatible w unifiedTopology
     w:0
   })
 
