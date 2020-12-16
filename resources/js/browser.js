@@ -8,13 +8,6 @@ form.addEventListener("submit", (e) => {
   fetch(uri, fetchOptions({
     "username":user.value, 
     "password":pwd.value 
-  }))
-  .then(res => {
-  if (res.redirected==true){
-    console.log(res)
-    window.location.href = res.url
-  } else {
-    console.log(res)
-    console.log("problem w registration")
-  }}).catch(e=>console.log(e))
+  })).then(res => res)
+  .catch(e=>console.log(e))
 })

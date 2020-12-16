@@ -5,31 +5,38 @@
 
 //-------------------//
 
-// load config from .env
 require("dotenv").config()
 
 const express = require("express")
-const app = express()
-const session =  require("express-session")
+const app = express() //main object
+
+const session =  require("express-session")//stores in req.session
 const path = require("path")//utility
-const logger = require('morgan');
+const logger = require('morgan'); //dev tool
 const helmet = require("helmet")
 const DBrequests = require("./serverJs/db/requests")
 const loginController = require("./serverJs/db/users")
 const exphbs = require("express-handlebars")
 const  { devServer, prodServer } = require("./serverJs/servers") 
-const { SECRET, PROD, DEV } = process.env
+const { SECRET, NODE_ENV} = process.env
 
 app.use(session({
-	secret: SECRET,
-	resave: true,
+	secret: SECRET,//recommended array pushing new string daily
+  //will keep the same for now
+	resave: false, //typically you want false (docs)
 	saveUninitialized: false,
-  cookie:{ sameSite: false }
+  cookie: NODE_ENV === "production" ? { 
+    sameSite:true, 
+    secure:true 
+  }:{ 
+    sameSite: false,
+    secure: false 
+  }
 }));
 app.use(logger("dev"))
 //app.use(express.urlencoded({extended : true}));
 app.use(express.json());
-app.use(helmet());
+//app.use(helmet());
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -48,15 +55,15 @@ app.use(express.static(path.join(__dirname + base)))
 
 
 app.get("/", (req, res) => {
-  req.session.loggedIn ?
-    res.sendFile(path.join(__dirname, "index.html")):
-    res.status(301).redirect("/login")
+  if (req.session.loggedIn){
+      res.sendFile(path.join(__dirname, "index.html"))
+    } else{ res.redirect(301, "/login") }
 })
 
 app.get("/login", (req, res) => {
   req.session.loggedIn ?
-    res.status(301).redirect("/"):
-    res.render("login", {
+    res.redirect(301, "/"):
+    res.render("users", {
      title:"Login",
      formId:"login",
      link:{
@@ -68,10 +75,10 @@ app.get("/login", (req, res) => {
     })
 })
 
-app.get("register", (req, res) => {
+app.get("/register", (req, res) => {
   req.session.loggedIn ?
-    res.status(301).redirect("/"):
-    res.render("register", {
+    res.redirect(301, "/"):
+    res.render("users", {
      title:"Registration",
      formId:"register",
      link:{
@@ -79,7 +86,6 @@ app.get("register", (req, res) => {
        href: "login",
        text:" Login"
      }})
-
 })
 
 app.use((req, res, next) => {
@@ -95,12 +101,20 @@ app.use("/quote", DBrequests)
 //run dev server
 //PROD=="true" ? prodServer(): devServer()
 app.get("/logout", (req, res) => {
-req.session.destroy(() => res.redirect("/"))
+console.log(req.session.views)
+req.session.destroy((err) => {
+  if(!err){
+  console.log("views after session destroyed", req.session.views)
+  res.redirect(301, "/")
+  } else{console.log(err)}
 })
+})
+
 app.get("*", (req, res) => {
-    res
-    .status(404)
-    .sendFile(path.join(__dirname, paths.html, "/404.html"))
+    res.setHeader('Content-Type', 'text/html')
+    res.status(404)
+    res.write('<h1 style="text-align:center, font-family:sans-serif">404: Page Not Found</h1>')
+    res.end()
 })
 
 app.listen(3000)

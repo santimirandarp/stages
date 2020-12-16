@@ -24,7 +24,7 @@ const login = async (req, res, client) => {
       if(user){ // found user?
         req.session.loggedIn = true;
         req.session.username = username;
-        res.redirect("/");
+        res.redirect(301, "/");
       }}} catch(e){ 
         console.log(e)
       } 
