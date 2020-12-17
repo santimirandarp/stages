@@ -6,23 +6,25 @@
 //-------------------//
 
 require("dotenv").config()
-
 const express = require("express")
-const app = express() //main object
+const app = express() //app object
 
-const session =  require("express-session")//stores in req.session
-const path = require("path")//utility
-const logger = require('morgan'); //dev tool
-const helmet = require("helmet")
+const session =  require("express-session") //stores in req.session
+const path = require("path")
+const logger = require('morgan') //dev tool
+const helmet = require("helmet")// improves headers
+const exphbs = require("express-handlebars")//to write less html
+
+//own stuff
 const DBrequests = require("./serverJs/db/requests")
-const loginController = require("./serverJs/db/users")
-const exphbs = require("express-handlebars")
+const crudUsers = require("./serverJs/db/users")
 const  { devServer, prodServer } = require("./serverJs/servers") 
 const { SECRET, NODE_ENV} = process.env
 
+
+// MiddleWares
 app.use(session({
-	secret: SECRET,//recommended array pushing new string daily
-  //will keep the same for now
+	secret: SECRET,
 	resave: false, //typically you want false (docs)
 	saveUninitialized: false,
   cookie: NODE_ENV === "production" ? { 
@@ -34,9 +36,7 @@ app.use(session({
   }
 }));
 app.use(logger("dev"))
-//app.use(express.urlencoded({extended : true}));
-app.use(express.json());
-//app.use(helmet());
+app.use(helmet());
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -48,67 +48,30 @@ const paths = {
   css:`${base}/css`, 
   js:`${base}/js`
 }
+
 app.use(express.static(path.join(__dirname + paths.html)))
 app.use(express.static(path.join(__dirname + paths.css)))
 app.use(express.static(path.join(__dirname + paths.js)))
 app.use(express.static(path.join(__dirname + base)))
 
-
 app.get("/", (req, res) => {
-  if (req.session.loggedIn){
-      res.sendFile(path.join(__dirname, "index.html"))
-    } else{ res.redirect(301, "/login") }
-})
+  req.session.loggedIn ? 
+    res.sendFile(path.join(__dirname, "index.html")):
+     res.redirect(303, "/users/login") 
+   })
 
-app.get("/login", (req, res) => {
-  req.session.loggedIn ?
-    res.redirect(301, "/"):
-    res.render("users", {
-     title:"Login",
-     formId:"login",
-     link:{
-       par:"New user?", 
-       href: "register",
-       text:" Register"
-     }
-
-    })
-})
-
-app.get("/register", (req, res) => {
-  req.session.loggedIn ?
-    res.redirect(301, "/"):
-    res.render("users", {
-     title:"Registration",
-     formId:"register",
-     link:{
-       par:"Registered?", 
-       href: "login",
-       text:" Login"
-     }})
-})
-
+// more specific middlewares
 app.use((req, res, next) => {
  res.header("Access-Control-Allow-Origin", "*");
  next()
 })
-
+app.use(express.urlencoded({extended : false}));
+app.use(express.json());
 //routes
 //app.use("/todos", todosHandler) 
-app.use("/users", loginController) 
-app.use("/quote", DBrequests)
 
-//run dev server
-//PROD=="true" ? prodServer(): devServer()
-app.get("/logout", (req, res) => {
-console.log(req.session.views)
-req.session.destroy((err) => {
-  if(!err){
-  console.log("views after session destroyed", req.session.views)
-  res.redirect(301, "/")
-  } else{console.log(err)}
-})
-})
+app.use("/users", crudUsers) 
+app.use("/quote", DBrequests)
 
 app.get("*", (req, res) => {
     res.setHeader('Content-Type', 'text/html')

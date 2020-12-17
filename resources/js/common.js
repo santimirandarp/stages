@@ -3,11 +3,8 @@ const fetchOptions = data => {
     method: 'POST', 
     mode: 'cors', 
     cache: 'no-cache', 
-    credentials: 'same-origin', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow',
+    credentials: 'include', 
+    headers: { 'Content-Type': 'application/json' },
     referrerPolicy: 'no-referrer', 
     body: JSON.stringify(data)
   }}
