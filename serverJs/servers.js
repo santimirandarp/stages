@@ -3,26 +3,24 @@ const app = express()
 const https = require("https")
 const http = require("http")
 const fs = require("fs")
+require("dotenv").config()
+const {PEM_KEY, PEM_CERT} = process.env
 
 const prodServer = () => {
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer({
-  key: fs.readFileSync('/etc/letsencrypt/live/mirandasites.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/mirandasites.com/fullchain.pem'),
-}, app);
+  const httpServer = http.createServer(app);
+  const httpsServer = https.createServer({
+    key: fs.readFileSync(PEM_KEY),
+    cert: fs.readFileSync(PEM_CERT)
+  }, app);
 
-httpServer.listen(80, () => {
-    console.log('HTTP Server running on port 80');
-});
-
-httpsServer.listen(443, () => {
+ return httpsServer.listen(443, () => {
     console.log('HTTPS Server running on port 443');
-}) 
-return 1
+  }) 
+  
 }
 
 const devServer = () => {
-app.listen( process.env.PORT || 3000, () => console.log(`listening at 3000`)) 
-  return 1
+ return app.listen( process.env.PORT || 3000, () => console.log(`listening at 3000`)) 
 }
+
 module.exports = {devServer:devServer, prodServer:prodServer}

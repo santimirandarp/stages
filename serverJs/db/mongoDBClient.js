@@ -13,7 +13,7 @@ const {
 const cluster = `${DBUSER}:${PASS}@${CLUSTER_ID}`
 const todosUri = `mongodb+srv://${cluster}.mongodb.net/todos`
 
-const client = new MongoClient(todosUri, {
+const mongoDBClient = new MongoClient(todosUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     authSource:"admin",
@@ -23,4 +23,4 @@ const client = new MongoClient(todosUri, {
     w:0
   })
 
-module.exports = client //default export
+module.exports = mongoDBClient //default export

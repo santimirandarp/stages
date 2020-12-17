@@ -1,7 +1,8 @@
 const pwd = document.querySelector("input[name=password]")
 const user = document.querySelector("input[name=username]")
-const form = document.getElementById("login")
-const uri = "http://localhost:3000/users/login"
+const form = document.querySelector("form")
+const uri = "http://localhost:3000/users/"+form.id
+
 
 const fetchOptions = data => {
   return { 
@@ -14,7 +15,6 @@ const fetchOptions = data => {
     body: JSON.stringify(data)
   }}
 
-
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   fetch(uri, fetchOptions({
@@ -23,6 +23,6 @@ form.addEventListener("submit", (e) => {
   })).then( res => {
     if(res.redirected){ 
       return window.location.href=res.url
-    } else {console.log(res.msg) }
+    } else {return 0}
   }).catch(e => console.log(e))
 })
