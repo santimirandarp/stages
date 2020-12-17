@@ -14,12 +14,11 @@ const path = require("path")
 const logger = require('morgan') //dev tool
 const helmet = require("helmet")// improves headers
 const exphbs = require("express-handlebars")//to write less html
-
 //own stuff
 const DBrequests = require("./serverJs/db/requests")
 const crudUsers = require("./serverJs/db/users")
 const  { devServer, prodServer } = require("./serverJs/servers") 
-const { SECRET, NODE_ENV} = process.env
+const { SECRET, NODE_ENV } = process.env
 
 
 // MiddleWares
@@ -55,9 +54,11 @@ app.use(express.static(path.join(__dirname + paths.js)))
 app.use(express.static(path.join(__dirname + base)))
 
 app.get("/", (req, res) => {
-  req.session.loggedIn ? 
-    res.sendFile(path.join(__dirname, "index.html")):
-     res.redirect(303, "/users/login") 
+  if(req.session.loggedIn){
+    return res.sendFile(path.join(__dirname, "index.html"))
+  } else {
+    return res.redirect(303, "/users/login") 
+  }
    })
 
 // more specific middlewares
@@ -67,6 +68,7 @@ app.use((req, res, next) => {
 })
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
+
 //routes
 //app.use("/todos", todosHandler) 
 

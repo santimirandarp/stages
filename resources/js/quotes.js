@@ -10,6 +10,18 @@ const postInputs = document.querySelectorAll(".requests__post input")
 const inputQuote = postInputs[0]
 const inputAuthor = postInputs[1]
 
+const fetchOptions = data => {
+  return { 
+    method: 'POST', 
+    mode: 'cors', 
+    cache: 'no-cache', 
+    credentials: 'include', 
+    headers: { 'Content-Type': 'application/json' },
+    referrerPolicy: 'no-referrer', 
+    body: JSON.stringify(data)
+  }}
+
+
 
 const quotesUl = document.querySelector(".quotes__ul")
 
@@ -25,10 +37,12 @@ const drawList = items => {
 }
 
 const rmSideQuotes = (quote) => {
- if(quote.charAt(0)=="'"||"\""){
+  const first = quote.charAt(0)
+  const last = quote.charAt(quote.length-1)
+ if( first ==="'"|| first ==="\""){
    quote = quote.replace(quote.charAt(0), "")
 }
- if(quote.charAt(quote.length-1)=="'"||"\""){
+ if( last ==="'"|| last ==="\""){
    quote = quote.replace(quote.charAt(quote.length-1), "")
  }
 return quote 
@@ -59,8 +73,8 @@ formPost.addEventListener("submit", (e) => {
       quotesUl.innerHTML=`<div class="requests__response"><p>
       ${quote}<br/>by ${author}</p><p>${success}</p><img src="./img/checkmark.png"
     class="request__response-img" alt="image yet"/></div>`
-      inputAuthor.value = ""
-      inputQuote.value = ""
+      inputAuthor.value=""
+      inputQuote.value=""
       return 1
     }).catch(e => "Please, try again.")
 })

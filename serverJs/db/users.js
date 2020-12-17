@@ -9,27 +9,22 @@ const crudOp = async (req, res, client, crudFn) => {
     if(username && password){
       await client.connect() 
       const user = await crudFn(client, username, password)
-      console.log("value of variable user is", user)
       if(user){ // found user?
         if (crudFn.name==="deleteUser"){
           return res.redirect(303, "/users/logout")
         } else {
             req.session.loggedIn = true;
             req.session.username = username;
-           //user logged or reg, append to response
-            res.username = username;
            return res.redirect(303, "/")
           }
       } else {
-        return res.status(404).send({
-          msg:"wrong password/user ? Try again"
-        })
+        const err = "Wrong password/user? Try again"
+        return res.json({err:err})
+        }
       }
-    }} catch(e){ 
-      console.log(e)
-      return res.send({
-        msg:"Wrong user or connection problem Try again"
-      })
+    } catch(e){ 
+      const err = "Wrong user or connection problem Try again"
+      return res.json({err:err})
     } 
 } 
 
@@ -78,7 +73,7 @@ router.get("/register", (req, res) => {
 router.get("/delete", (req, res) => {
   req.session.loggedIn ?
     res.render("users", 
-      renderObject("Remove User", "delete", "", 
+      renderObject("Remove User", "delete", "/", 
         "Regret? Go back home")):
     res.redirect(303, "/login")
 })

@@ -3,6 +3,7 @@ const user = document.querySelector("input[name=username]")
 const form = document.querySelector("form")
 const uri = "http://localhost:3000/users/"+form.id
 
+const checkbox = document.querySelector("input[type=checkbox]")
 
 const fetchOptions = data => {
   return { 
@@ -15,14 +16,30 @@ const fetchOptions = data => {
     body: JSON.stringify(data)
   }}
 
+checkbox.addEventListener("click", function myFunction() {
+  if (pwd.type === "password") {
+    pwd.type = "text";
+  } else {
+    pwd.type = "password";
+  }
+})
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  const informUser = document.getElementById("informUser") 
+  informUser.innerHTML="Sending Data To Server..."
   fetch(uri, fetchOptions({
     "username":user.value, 
     "password":pwd.value 
-  })).then( res => {
+  })).then(res => {
     if(res.redirected){ 
-      return window.location.href=res.url
-    } else {return 0}
-  }).catch(e => console.log(e))
+      window.location.href=res.url
+      return { msg: "success" }
+    } else {
+      return res.json()
+    }
+  })
+    .then(json => { informUser.innerHTML=json.msg })
+    .catch(e => console.log(e))
 })
+
