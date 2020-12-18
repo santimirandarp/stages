@@ -1,0 +1,12 @@
+@use "../common/variables" as *;
+
+.errorInput {
+  &::before{
+    content:"Format is not valid. Try again."
+  }}
+
+.inlineCode{
+display:inline-block;
+background-color:$bgCode;
+padding:0 3px;
+}

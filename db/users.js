@@ -59,6 +59,7 @@ const renderObject = (title, formId, href, linkText) => {
 
 
 router.get("/login", (req, res) => {
+  console.log(req.session.loggIn)
   req.session.loggedIn ?
     res.redirect(303, "/"):
     res.render(loginFile, renderObject("Login", "login", "register", 

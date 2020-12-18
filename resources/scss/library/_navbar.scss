@@ -1,24 +1,12 @@
 @use "../common/variables" as *;
-#navbar{
-  width:100%;
-  top:0;
-  left:0;
-  position:absolute;
-  background-color: $navBgColor;
-  & > ul{
-    display:flex;
-    flex-direction:row;
-    & > li > a {
-      display:inline-block;
-    padding:$navPadding}
-} }
+@use "../common/navBar100";
 
 @media screen and (min-width:1200px){
   #navbar{
   grid-area:nav;
   position:static;
     align-self:center;
-    & > ul{
+     > ul{
       flex-direction:column;
   }}
 }

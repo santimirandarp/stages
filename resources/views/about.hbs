@@ -1,6 +1,7 @@
 <h1>A connected World</h1>
+<p>The world of computers and robots advances the world. A very basic understanding of how this artifacts connect to each other can be very mind expanding. Here, a humble model for newcomers.</p>
 
-<section title="theory, first model">
+<section aria-label="theory, first model">
 <h2>Succesive approximations: a simple model</h2>
 
 <p>Let's list the necessary components:</p>
@@ -13,7 +14,8 @@
 <a href="cloud.jpg" title="click to enlarge."><img src="cloud.jpg" alt="Your pc, on the right. The server computer on the right. they connect through lines, representing the network."></a>
 </section>
 <!-- (The Cloud, Internet, or World Wide Web) --> 
-<section title="theory, improving the model">
+
+<section aria-label="theory, improving the model">
 <h2>A step further: Top down idea</h2>
 <p>The previous list includes <em>Huge Network</em>, this is: The Cloud, the World Wide Web, or the internet. All of them are synonyms, and they are used in a lazy way, so be ready guess the meaning.</p>
 
@@ -28,7 +30,7 @@
 <p>I will just turn it slightly crazier. Web servers (the market), and Web Browsers (you) are not the only type of connection between 2 computers. There are many others. But this is a topic for another post.</p>
 </section>
 
-<section title="refreshing the previous discussion">
+<section aria-label="refreshing the previous discussion">
 <h2>Last bits</h2>
 
 <p>Once a server is started on a computer, we can connect to it from home. A web server is basically a server that can be reached using a Web Browser. <a href="https://google.com">https://google.com</a> is a web server, any newspaper site, any site! We always connect to this computer providing a service (server).</p>
@@ -40,7 +42,7 @@
 <p>The page you're seeing right now is "hosted" in a server. It means that this is much like seeing a Word Document, but the file is actually in my -as opposed to your- computer!</p>
 </section>
 
-<section title="Apply the knowledge">
+<section aria-label="Apply the knowledge">
 <h2>Now that we have a Model</h2>
 <p>Now that we have a model, we can think and understand</p>
 
@@ -48,10 +50,13 @@
 
 <p>By clicking a link down below, you're <strong>requesting</strong> a file to a web server. It <strong>responds</strong> with a file, if it exists, or it returns "404 not found"! </p>
 
-<a href="index.html">Request a webpage (HomePage)</a>
-<a href="test.json">Request JSON file</a>
-<a href="cloud.jpg">Request an Image</a>
-<a href="nothing">See how it fails</a>
+<ul>
+<li><a href="/">Homepage</a></li>
+<li><a href="/json/rand.json">Request JSON file</a></li>
+<li><a href="/img/rand.jpg">Request an Image</a></li>
+<li><a href="#">Nothing happens</a></li>
+<li><a href="notFound.html">Not Found!</a></li>
+</ul>
+
 </section>
 
-<p>If you visit the home page, you'll get to play even more</p>

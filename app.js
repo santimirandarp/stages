@@ -1,11 +1,13 @@
-// the server contains 3 main blocks. 
-// * Login/register
+// server contains 3 blocks. 
+// * Login
 // * Home/About pages
-// Application pages (where there are calls to DB)
+// * Application pages (w calls to DB)
 
 //-------------------//
 
 require("dotenv").config()
+const { SECRET, PEM_KEY, PEM_CERT, NODE_ENV } = process.env
+
 const express = require("express")
 const app = express() //app object
 
@@ -14,12 +16,17 @@ const path = require("path")
 const logger = require('morgan') //dev tool
 const helmet = require("helmet")// improves headers
 const exphbs = require("express-handlebars")//to write less html
-//own stuff
-const DBrequests = require("./serverJs/db/requests")
-const crudUsers = require("./serverJs/db/users")
-const  { devServer, prodServer } = require("./serverJs/servers") 
-const { SECRET, NODE_ENV } = process.env
+if( NODE_ENV==="production" ){
+  var https = require("https")
+  var fs = require("fs")
+}
 
+const mongoAppRequest = require("./db/requests")
+const mongoCrudUser = require("./db/users")
+
+NODE_ENV!=="production" && app.use(logger("dev"))
+
+//
 // MiddleWares
 app.use(session({
   secret: SECRET,
@@ -33,7 +40,7 @@ app.use(session({
     secure: false 
   }
 }));
-app.use(logger("dev"))
+
 app.use(helmet());
 
 app.engine('.hbs', exphbs({extname: '.hbs'}));
@@ -56,38 +63,38 @@ const props = (user, styleDir) => ({
   stylesheet: "/"+styleDir+"/index"
 })
 
+const setRedirect = (req, res, view, styleDir) => {
+  const path = req.path;
+  const {loggedIn, username} = req.session
+  if(loggedIn){
+    res.render(view, props(username, styleDir))
+  } else {res.redirect(303, "/users/login")}
+}
+
 app.get("/", (req, res) => {
-  req.session.loggedIn ?
-    res.render("index", props(req.session.username, "home")):
-    res.redirect(303, "/users/login") 
+  setRedirect(req, res, "index", "home")
 })
-
-app.get("/library", (req,res) => {
-  req.session.loggedIn ?
-    res.render("library", props(req.session.username, "library")):
-    res.redirect(303, "/users/login") 
+app.get("/library", (req, res) => {
+  setRedirect(req, res, "library", "library")
 })
-
-app.get("/about", (req,res) => {
-  req.session.loggedIn ?
-    res.render("about", props(req.session.username, "about")):
-    res.redirect(303, "/users/login") 
+app.get("/about", (req, res) => {
+  setRedirect(req, res, "about", "about")
 })
-
-// more specific middlewares
-app.use((req, res, next) => {
+// +MIDDLEWARES
+app.use(function (req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   next()
 })
+
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 
-//routes
-//app.use("/todos", todosHandler) 
+// ROUTES
+// app.use("/todos", todosHandler) 
+app.use("/users",  mongoCrudUser) 
+app.use("/quote", mongoAppRequest)
 
-app.use("/users", crudUsers) 
-app.use("/quote", DBrequests)
-
+// Rest 
 app.get("*", (req, res) => {
   res.setHeader('Content-Type', 'text/html')
   res.status(404)
@@ -95,6 +102,20 @@ app.get("*", (req, res) => {
   res.end()
 })
 
-//NODE_ENV==="production"?prodServer():devServer(3000)
-app.listen(3000)
+
+//server
+if (NODE_ENV==="production"){
+  const httpsServer = https.createServer({
+    key: fs.readFileSync(PEM_KEY),
+    cert: fs.readFileSync(PEM_CERT)
+  }, app);
+  httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+  }) 
+} else { 
+  const port = 3000 
+  app.listen( process.env.PORT || port, 
+    () => console.log(`listening at ${port}`)) 
+}
+
 

@@ -1,0 +1,30 @@
+@use "variables" as *;
+
+#navbar{
+  background-color: $navBgColor;
+  > ul{
+    display:flex;
+    > li:last-child{ 
+    position:relative 
+  }
+    > li a {
+      padding:$navPadding
+    }}} 
+
+
+.settings {
+ background-color: $navBgColor;
+ display:none;
+ position:absolute;
+ width:120px;
+ left:50%;
+ top:calc(100% + 10px);
+ transform:translateX(-50%);
+ height:0
+}
+
+.settings--height{
+  transition:height 0.3s ease-in;
+  height:60px;
+}
+  
