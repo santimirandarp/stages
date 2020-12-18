@@ -1,34 +1,5 @@
-@use "../common/fonts";
-@use "../common/resets";
-
-$bodyFontCol:white;
-$bg:#121212;
-$bgCode:rgba(40,40,40,0.8);
-$linkFontColor:rgba(114, 114, 189, 0.9);
-$navBgColor:#461e1ea6;
-
-$fontSize:16px;
-$inputMargin:1rem;
-
-@mixin center(){ display:grid; place-items:center; }
-
-@mixin flexCenter($dir){
-  display:flex;
-  flex-direction:$dir;
-  align-items:center;
-  justify-content:center;
-}
-
-a {
-  font-variant:small-caps;
-  color:$linkFontColor;
-}
-
-button, select{
-  font-variant:small-caps;
-  font-size:0.9rem;
-  letter-spacing:1px;
-}
+@use "../common/allIncluded";
+@use "../common/variables" as *;
 
 body{
   @include center;

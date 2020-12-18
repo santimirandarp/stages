@@ -1,4 +1,4 @@
-@use "variables";
+@use "variables" as *;
 * {
   padding:0; 
   margin:0; 
@@ -6,7 +6,7 @@
   border-radius:0;
   box-sizing:border-box
 }
-html{font-size:variables.$fontSize}
+html{font-size:$fontSize}
 ul{list-style-type:none;}
 a{text-decoration:none}
 button:hover, a:hover, select:hover {
