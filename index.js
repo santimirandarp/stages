@@ -51,21 +51,26 @@ app.use(express.static(path.join(__dirname + paths.css)))
 app.use(express.static(path.join(__dirname + paths.js)))
 app.use(express.static(path.join(__dirname + base)))
 
+const props = (user, styleDir) => ({
+  username: user||"user",
+  stylesheet: "/"+styleDir+"/index"
+})
+
 app.get("/", (req, res) => {
   req.session.loggedIn ?
-    res.render("index", { stylesheet:"/home/index" }):
+    res.render("index", props(req.session.username, "home")):
     res.redirect(303, "/users/login") 
-}
+})
 
 app.get("/library", (req,res) => {
   req.session.loggedIn ?
-    res.render("library", { stylesheet:"library/index" }):
+    res.render("library", props(req.session.username, "library")):
     res.redirect(303, "/users/login") 
 })
 
 app.get("/about", (req,res) => {
   req.session.loggedIn ?
-    res.render("about", { stylesheet:"about/index" }):
+    res.render("about", props(req.session.username, "about")):
     res.redirect(303, "/users/login") 
 })
 
@@ -90,5 +95,6 @@ app.get("*", (req, res) => {
   res.end()
 })
 
+//NODE_ENV==="production"?prodServer():devServer(3000)
 app.listen(3000)
 

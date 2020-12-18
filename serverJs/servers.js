@@ -21,8 +21,8 @@ const prodServer = () => {
   
 }
 
-const devServer = () => {
- return app.listen( process.env.PORT || 3000, () => console.log(`listening at 3000`)) 
+const devServer = (port) => {
+ return app.listen( process.env.PORT || port, () => console.log(`listening at ${port}`)) 
 }
 
 module.exports = {
