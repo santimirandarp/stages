@@ -37,8 +37,8 @@ app.use(session({
 app.use(logger("dev"))
 app.use(helmet());
 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
 app.set('views', 'resources/views')
 
 const base = "/resources"
@@ -48,18 +48,33 @@ const paths = {
   js:`${base}/js`
 }
 
-app.use(express.static(path.join(__dirname + paths.html)))
 app.use(express.static(path.join(__dirname + paths.css)))
 app.use(express.static(path.join(__dirname + paths.js)))
 app.use(express.static(path.join(__dirname + base)))
 
 app.get("/", (req, res) => {
   if(req.session.loggedIn){
-    return res.sendFile(path.join(__dirname, "index.html"))
+    res.render("index", { stylesheet:"/home/index" })
   } else {
-    return res.redirect(303, "/users/login") 
+    res.redirect(303, "/users/login") 
   }
    })
+
+app.get("/library", (req,res) => {
+ if(req.session.loggedIn){
+ res.render("library", { stylesheet:"library/index" })
+ } else{
+    res.redirect(303, "/users/login") 
+ }
+})
+
+app.get("/about", (req,res) => {
+ if(req.session.loggedIn){
+ res.render("about", { stylesheet:"about/index" })
+ } else{
+    res.redirect(303, "/users/login") 
+ }
+})
 
 // more specific middlewares
 app.use((req, res, next) => {

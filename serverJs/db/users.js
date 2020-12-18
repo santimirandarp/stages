@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const client = require("./mongoDBClient")
 const {findUser, deleteUser, createUser} = require("./crud")
+const loginFile = "users"
+const loginTemplate = "login"
 
 const crudOp = async (req, res, client, crudFn) => {
   try {
@@ -47,6 +49,7 @@ router.post("/login|/register|/delete", (req, res) => {
 const renderObject = (title, formId, href, linkText) => {
   return {
     title:title,
+    layout:loginTemplate,
     formId: formId,
     link:{
       href: href,
@@ -58,21 +61,21 @@ const renderObject = (title, formId, href, linkText) => {
 router.get("/login", (req, res) => {
   req.session.loggedIn ?
     res.redirect(303, "/"):
-    res.render("users", renderObject("Login", "login", "register", 
+    res.render(loginFile, renderObject("Login", "login", "register", 
       "New user? Register")) 
 })
 
 router.get("/register", (req, res) => {
   req.session.loggedIn ?
     res.redirect(303, "/"):
-    res.render("users", 
+    res.render(loginFile, 
       renderObject("Registration", "register", "login", 
         "Coming Back? Log in Instead")) 
 })
 
 router.get("/delete", (req, res) => {
   req.session.loggedIn ?
-    res.render("users", 
+    res.render(loginFile, 
       renderObject("Remove User", "delete", "/", 
         "Regret? Go back home")):
     res.redirect(303, "/login")
