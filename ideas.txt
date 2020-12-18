@@ -1,3 +1,0 @@
-<progress id="file" max="100" value="70"> </progress>
-Use progress to show characters left when ppl type on 
-input fields.

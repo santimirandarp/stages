@@ -16,7 +16,9 @@ Done.
 
 ## Stage 4
 Use part of the SCSS, modules and database to create a basic TODO app 
-with loggin.
+with log in and user CRUD operations (create, delete and log in and out).
+
+Also implemented a more solid handlebars, and now all pages just go inside views.
 
 ## Stage 5
 In this stage, we implement sockets for a Chat API: front end and express router.

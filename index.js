@@ -20,12 +20,11 @@ const crudUsers = require("./serverJs/db/users")
 const  { devServer, prodServer } = require("./serverJs/servers") 
 const { SECRET, NODE_ENV } = process.env
 
-
 // MiddleWares
 app.use(session({
-	secret: SECRET,
-	resave: false, //typically you want false (docs)
-	saveUninitialized: false,
+  secret: SECRET,
+  resave: false, //typically you want false (docs)
+  saveUninitialized: false,
   cookie: NODE_ENV === "production" ? { 
     sameSite:true, 
     secure:true 
@@ -53,33 +52,27 @@ app.use(express.static(path.join(__dirname + paths.js)))
 app.use(express.static(path.join(__dirname + base)))
 
 app.get("/", (req, res) => {
-  if(req.session.loggedIn){
-    res.render("index", { stylesheet:"/home/index" })
-  } else {
+  req.session.loggedIn ?
+    res.render("index", { stylesheet:"/home/index" }):
     res.redirect(303, "/users/login") 
-  }
-   })
+}
 
 app.get("/library", (req,res) => {
- if(req.session.loggedIn){
- res.render("library", { stylesheet:"library/index" })
- } else{
+  req.session.loggedIn ?
+    res.render("library", { stylesheet:"library/index" }):
     res.redirect(303, "/users/login") 
- }
 })
 
 app.get("/about", (req,res) => {
- if(req.session.loggedIn){
- res.render("about", { stylesheet:"about/index" })
- } else{
+  req.session.loggedIn ?
+    res.render("about", { stylesheet:"about/index" }):
     res.redirect(303, "/users/login") 
- }
 })
 
 // more specific middlewares
 app.use((req, res, next) => {
- res.header("Access-Control-Allow-Origin", "*");
- next()
+  res.header("Access-Control-Allow-Origin", "*");
+  next()
 })
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
@@ -91,10 +84,10 @@ app.use("/users", crudUsers)
 app.use("/quote", DBrequests)
 
 app.get("*", (req, res) => {
-    res.setHeader('Content-Type', 'text/html')
-    res.status(404)
-    res.write('<h1 style="text-align:center, font-family:sans-serif">404: Page Not Found</h1>')
-    res.end()
+  res.setHeader('Content-Type', 'text/html')
+  res.status(404)
+  res.write('<h1 style="text-align:center, font-family:sans-serif">404: Page Not Found</h1>')
+  res.end()
 })
 
 app.listen(3000)

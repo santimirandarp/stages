@@ -1,7 +1,7 @@
-@use "variables" as *;
-@use "resets";
+@use "../common/variables" as *;
+@use "../common/resets";
 @use "utils";
-@use "fonts";
+@use "../common/fonts";
 @use "layout";
 @use "general";
 @use "navbar";
