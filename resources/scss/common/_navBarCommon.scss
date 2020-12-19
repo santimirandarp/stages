@@ -4,12 +4,9 @@
   background-color: $navBgColor;
   > ul{
     display:flex;
-    > li:last-child{ 
-    position:relative 
-  }
-    > li a {
-      padding:$navPadding
-    }}} 
+    > li:last-child{ position:relative }
+    > li a { padding:$navPadding }
+}} 
 
 
 .settings {

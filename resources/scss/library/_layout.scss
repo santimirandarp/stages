@@ -17,10 +17,7 @@ body {
 #quotes{ grid-area:quotes; }
 
 @media screen and (min-width:750px){
-  body{
-  padding:1rem;
-  padding-top: calc(#{$navHeight} + 2rem);
-}
+  body{ padding:1rem; }
 }
 
 @media screen and (min-width:1000px){
@@ -31,14 +28,6 @@ body{
   grid-template-columns:  0.66fr 0.33fr;
   grid-template-areas:
   "requests info "
-  "quotes quotes";
-}
-}
-@media screen and (min-width:1200px){
-body{
-  grid-template-areas:
-  "requests nav"
-  "requests info"
   "quotes quotes";
 }
 }

@@ -1,35 +1,7 @@
 @use "../common/allIncluded";
 @use "../common/variables" as *;
 
-body{
-  @include center;
-  min-height:100vh;
-  color:$bodyFontCol;
-  background-color:$bg;
-  text-align:center;
-  font-size:$fontSize;
+body { 
+display:grid; 
+place-items:center;
 }
-.inlineCode{
-display:inline-block;
-background-color:$bgCode;
-padding:0 3px;
-}
-
-#navbar{
-  background-color: $navBgColor;
-  & > ul{
-    display:flex;
-    flex-direction:column;
-    & > li {
-    padding:1rem;
-    & > a {padding:2.2rem 4rem}}
-}}
-
-
-@media only screen and (max-width: 800px) {
-  #navbar{
-    & > ul{
-      display:flex;
-      flex-direction:column;
-      & > li {padding:1rem}
-  }}}

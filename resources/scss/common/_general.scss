@@ -18,6 +18,7 @@ input {
 a {
   font-variant:small-caps;
   color:$linkFontColor;
+  display:inline-block;
 }
 
 button, select{
@@ -35,3 +36,15 @@ body{
   text-align:center;
   font-size:$fontSize;
 }
+
+.errorInput {
+  &::before{
+    content:"Format is not valid. Try again."
+  }}
+
+.inlineCode{
+display:inline-block;
+background-color:$bgCode;
+padding:0 3px;
+}
+

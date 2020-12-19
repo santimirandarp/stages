@@ -4,9 +4,10 @@
   top:0;
   left:0;
   position:absolute;
-  > ul{
-    flex-direction:row;
-    }} 
+  > ul{ flex-direction:row; 
+    > li:last-child{margin-left:auto}
+  }
+} 
 
 
 .settings {
