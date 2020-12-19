@@ -1,6 +1,6 @@
 @use "variables" as *;
 
-#navbar{
+.navbar{
   height:4rem;
   width:4rem;
   overflow:hidden;
@@ -11,7 +11,7 @@
   transition: all 0.3s ease-in;
   background-color: change-color($navBgColor, $alpha:0.99);
   > ul{ 
-       margin-top:4rem;
+      margin-top:4rem;
        display:flex;
        flex-direction:column;
        padding: 0 2rem;
@@ -86,11 +86,12 @@ bottom: 8px;
  margin-left:auto;
  }
   .hamburger {display:none}
-  #navbar{
+ .navbar{
   height:auto;
   width:100%;
   background-color: $navBgColor;
   ul {
+  margin-top:0rem;
   display:flex;
   flex-direction:row;
   a:hover { 

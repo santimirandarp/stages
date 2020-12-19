@@ -1,4 +1,4 @@
-#navbar {
+.navbar {
   height: 4rem;
   width: 4rem;
   overflow: hidden;
@@ -9,16 +9,16 @@
   transition: all 0.3s ease-in;
   background-color: rgba(70, 30, 30, 0.99);
 }
-#navbar > ul {
+.navbar > ul {
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
   padding: 0 2rem;
 }
-#navbar > ul a {
+.navbar > ul a {
   padding: 0.8rem;
 }
-#navbar > ul a:hover {
+.navbar > ul a:hover {
   box-shadow: 0 1px black;
 }
 
@@ -89,16 +89,17 @@
     display: none;
   }
 
-  #navbar {
+  .navbar {
     height: auto;
     width: 100%;
     background-color: #461e1ea6;
   }
-  #navbar ul {
+  .navbar ul {
+    margin-top: 0rem;
     display: flex;
     flex-direction: row;
   }
-  #navbar ul a:hover {
+  .navbar ul a:hover {
     box-shadow: none;
     background-color: rgba(70, 30, 30, 0.99);
   }
