@@ -16,6 +16,13 @@ $navHeight: calc( #{$fontSize} + 2*#{$navPadding} );
 $borderLeftWidgets:rgba(10,10,10,0.9);
 $inputMargin:1rem;
 
+//hamburger
+$hamburgerOn:#ee0934;
+$hamburgerLineHeight:4px;
+$hamburgerMargin:1rem;
+$hamburgerSize:2rem;
+$hamburgerOff:#c8a242;
+
 @mixin center(){ display:grid; place-items:center; }
 
 @mixin flexCenter($dir){

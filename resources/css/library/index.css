@@ -1,12 +1,16 @@
 #navbar {
-  height: 75vh;
+  height: 4rem;
+  width: 4rem;
+  overflow: hidden;
   position: absolute;
   z-index: 999;
   top: 0;
   left: 0;
+  transition: all 0.3s ease-in;
   background-color: rgba(70, 30, 30, 0.99);
 }
 #navbar > ul {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   padding: 0 2rem;
@@ -16,6 +20,49 @@
 }
 #navbar > ul a:hover {
   box-shadow: 0 1px black;
+}
+
+.hamburger {
+  position: absolute;
+  z-index: 999;
+  top: 1rem;
+  right: 1rem;
+  height: 2rem;
+  width: 2rem;
+}
+.hamburger > * {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #c8a242;
+  transition: 0.3s all cubic-bezier(0.01, 0.62, 0.63, 0.79);
+}
+.hamburger > :first-child {
+  top: 8px;
+}
+.hamburger > :nth-child(2) {
+  top: 19px;
+}
+.hamburger > :nth-child(3) {
+  bottom: 8px;
+}
+.hamburger:hover {
+  cursor: pointer;
+}
+.hamburger__line1, .hamburger__line3 {
+  background-color: #ee0934;
+}
+.hamburger .hamburger__line1 {
+  transform: rotateZ(225deg);
+  top: 19px;
+}
+.hamburger .hamburger__line2 {
+  display: none;
+}
+.hamburger .hamburger__line3 {
+  transform: rotateZ(-225deg);
 }
 
 .userItem {
@@ -48,6 +95,7 @@
     background-color: #461e1ea6;
   }
   #navbar ul {
+    display: flex;
     flex-direction: row;
   }
   #navbar ul a:hover {

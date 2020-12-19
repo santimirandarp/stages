@@ -1,13 +1,17 @@
 @use "variables" as *;
 
 #navbar{
-  height:75vh; 
+  height:4rem;
+  width:4rem;
+  overflow:hidden;
   position:absolute;
   z-index:999;
   top:0;
   left:0;
+  transition: all 0.3s ease-in;
   background-color: change-color($navBgColor, $alpha:0.99);
   > ul{ 
+       margin-top:4rem;
        display:flex;
        flex-direction:column;
        padding: 0 2rem;
@@ -17,6 +21,50 @@
         box-shadow: 0 1px black;
       } } }
 } 
+
+.hamburger {
+  position: absolute;
+  z-index: 999;
+  top: $hamburgerMargin;
+  right: $hamburgerMargin;
+  height: $hamburgerSize;
+  width: $hamburgerSize;
+  > * {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: $hamburgerLineHeight;
+    border-radius: 5px;
+    background-color: $hamburgerOff;
+    transition: 0.3s all cubic-bezier(0.01, 0.62, 0.63, 0.79);
+    //bezier generated using firefox dev tools
+  }
+& > :first-child {
+top: 8px;
+}
+& > :nth-child(2) {
+top: 19px;
+}
+& > :nth-child(3) {
+bottom: 8px;
+}
+&:hover {
+    cursor: pointer;
+     }
+&__line1, &__line3{
+      background-color:$hamburgerOn;}
+#{&}__line1 {
+    transform: rotateZ(225deg);
+    top:19px;
+  }
+#{&}__line2 {
+    display: none;
+  }
+#{&}__line3 {
+    transform: rotateZ(-225deg);
+   
+  }
+}
 
 .userItem{
  position:relative;
@@ -42,7 +90,9 @@
   height:auto;
   width:100%;
   background-color: $navBgColor;
-  ul {flex-direction:row;
+  ul {
+  display:flex;
+  flex-direction:row;
   a:hover { 
           box-shadow: none;
           background-color: change-color($navBgColor, $alpha:0.99);
