@@ -1,45 +1,60 @@
 #navbar {
-  width: 100%;
+  height: 75vh;
+  position: absolute;
+  z-index: 999;
   top: 0;
   left: 0;
-  position: absolute;
-}
-#navbar > ul {
-  flex-direction: row;
-}
-#navbar > ul > li:last-child {
-  margin-left: auto;
-}
-
-#navbar {
-  background-color: #461e1ea6;
+  background-color: rgba(70, 30, 30, 0.99);
 }
 #navbar > ul {
   display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
 }
-#navbar > ul > li:last-child {
-  position: relative;
-}
-#navbar > ul > li a {
+#navbar > ul a {
   padding: 0.8rem;
 }
+#navbar > ul a:hover {
+  box-shadow: 0 1px black;
+}
 
-.settings {
-  background-color: #461e1ea6;
+.userItem {
+  position: relative;
+}
+.userItem__settings {
   display: none;
   position: absolute;
   width: 120px;
   left: 50%;
   top: calc(100% + 10px);
   transform: translateX(-50%);
-  height: 0;
+  height: 0 .userItem__settings --height;
+  height-transition: height 0.3s ease-in;
+  height-height: auto;
 }
 
-.settings--height {
-  transition: height 0.3s ease-in;
-  height: 60px;
-}
+@media screen and (min-width: 700px) {
+  .userItem {
+    margin-left: auto;
+  }
 
+  .hamburger {
+    display: none;
+  }
+
+  #navbar {
+    height: auto;
+    width: 100%;
+    background-color: #461e1ea6;
+  }
+  #navbar ul {
+    flex-direction: row;
+  }
+  #navbar ul a:hover {
+    box-shadow: none;
+    background-color: rgba(70, 30, 30, 0.99);
+  }
+}
 body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
@@ -111,6 +126,17 @@ button:hover, a:hover, select:hover {
   cursor: pointer;
 }
 
+body {
+  margin: auto;
+  padding: calc(0.3rem + 2vw);
+  margin-top: 3rem;
+  min-height: 100vh;
+  color: white;
+  background-color: #121212;
+  text-align: center;
+  font-size: 16px;
+}
+
 h2 {
   color: transparent;
   background-clip: text;
@@ -144,13 +170,6 @@ button:hover {
   background-color: #7272bd;
 }
 
-body {
-  color: white;
-  background-color: #121212;
-  text-align: center;
-  font-size: 16px;
-}
-
 .errorInput::before {
   content: "Format is not valid. Try again.";
 }
@@ -163,9 +182,7 @@ body {
 
 body {
   display: grid;
-  padding: calc(0.3rem + 2vw);
   max-width: 600px;
-  margin: auto;
   grid-template-columns: 1fr;
   grid-template-areas: "requests" "quotes" "info";
 }

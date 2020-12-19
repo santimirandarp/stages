@@ -1,15 +1,14 @@
-const settings = document.querySelector(".settings")
-const account = document.getElementById("account")
+const account = document.querySelector(".userItem__username")
+const settings = document.querySelector(".userItem__settings")
 
 const toggleDisplay = (element) => {
   if(element.style.display=="block") {
     element.style.display="none"
-    element.classList.remove("settings--height")
+    element.classList.remove("userItem__settings--height")
 } else { 
   element.style.display="block" 
-  element.classList.add("settings--height")
-}
-}
+  element.classList.add("userItem__settings--height")
+} }
 
 account.addEventListener("click", ( ) => toggleDisplay(settings))
 

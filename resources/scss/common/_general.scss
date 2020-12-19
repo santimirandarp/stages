@@ -1,11 +1,21 @@
 @use "../common/variables" as *;
 
+body{
+  margin:auto;
+  padding:calc(0.3rem + 2vw);
+  margin-top:3rem;
+  min-height:100vh;
+  color:$bodyFontCol;
+  background-color:$bg;
+  text-align:center;
+  font-size:$fontSize;
+}
+
 h2 {
   color:transparent;
   background-clip:text;
   background-image:linear-gradient(to right, $gradientLeft, $gradientRight)
 }
-
 
 input {
   caret-color:$gradientLeft;
@@ -21,7 +31,7 @@ a {
   display:inline-block;
 }
 
-button, select{
+button, select {
   font-variant:small-caps;
   font-size:0.9rem;
   letter-spacing:1px;
@@ -29,13 +39,6 @@ button, select{
 }
 
 button:hover{ background-color:$gradientLeft }
-
-body{
-  color:$bodyFontCol;
-  background-color:$bg;
-  text-align:center;
-  font-size:$fontSize;
-}
 
 .errorInput {
   &::before{

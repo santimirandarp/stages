@@ -10,15 +10,18 @@
   <body>
 
     <nav id="navbar">
+      <div class="hamburger">
+      <div>-</div><div>-</div><div>-</div>
+      </div>
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/library">Quotes Library</a></li>
-        <li>
-          <div id="account">
+        <li id="userItem" class="userItem">
+          <div class="userItem__username">
             <a href="#">{{{username}}} &#8964;</a>
           </div>
-          <ul class="settings">
+          <ul class="userItem__settings">
             <li><a href="/users/logout">Log Out</a></li>
             <li><a href="/users/delete">Remove User</a></li>
           </ul>

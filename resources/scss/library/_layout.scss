@@ -2,9 +2,7 @@
 
 body {
   display:grid;
-  padding:calc(0.3rem + 2vw);
   max-width:600px;
-  margin:auto;
   grid-template-columns: 1fr;
   grid-template-areas:
   "requests"
