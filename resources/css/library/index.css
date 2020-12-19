@@ -1,4 +1,17 @@
 #navbar {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+#navbar > ul {
+  flex-direction: row;
+}
+#navbar > ul > li:last-child {
+  margin-left: auto;
+}
+
+#navbar {
   background-color: #461e1ea6;
 }
 #navbar > ul {

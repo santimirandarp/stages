@@ -1,4 +1,13 @@
 @use "variables" as *;
+#navbar{
+  width:100%;
+  top:0;
+  left:0;
+  position:absolute;
+  > ul{ flex-direction:row; 
+    > li:last-child{margin-left:auto}
+  }
+} 
 
 #navbar{
   background-color: $navBgColor;
